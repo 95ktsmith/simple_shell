@@ -31,6 +31,11 @@ int main(int argc, char *argv[], char *env[])
 			filepath = check_file(args[0], _getenv("PATH", env));
 			if (!filepath)
 			{
+				if (_strstr(args[0], "exit"))
+				{
+					free(args);
+					return (0);
+				}
 				free(args);
 				write(STDOUT_FILENO, "Command not found\n", 18);
 				continue;
