@@ -60,7 +60,7 @@ char *find_in_path(char *filename, char *path)
 		if (access(fullpath, F_OK | X_OK) == 0)
 		{
 			free_array(path_dirs);
-			return(fullpath);
+			return (fullpath);
 		}
 
 		free(fullpath);

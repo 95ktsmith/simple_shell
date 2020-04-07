@@ -3,7 +3,7 @@
 
 /**
  * ffree - formatted free
- * Description: Takes a formatting string, like printf, and frees given pointers
+ * Description: Takes a format string, like printf, and frees given pointers
  *              accordingly, whether they are a single pointer (s), or a double
  *              pointer (d). Double pointers only work with char **s.
  * @fmt: String of format characters that define the pointers to free in order

@@ -1,8 +1,6 @@
 #include "holberton.h"
 #include <sys/wait.h>
 
-char *find_in_path(char *filename, char *path);
-
 int main(int argc, char *argv[], char *env[])
 {
 	char *filepath;
@@ -39,12 +37,13 @@ int main(int argc, char *argv[], char *env[])
 			}
 			free(args[0]);
 			args[0] = filepath;
-			if ((pid = fork()) == 0)
+			pid = fork();
+			if (pid == 0)
 				execve(args[0], args, env);
 			else
 				wait(&pid);
 			free(args);
 		}
 	}
-	return 0;
+	return (0);
 }
