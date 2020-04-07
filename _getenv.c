@@ -1,86 +1,72 @@
 #include "holberton.h"
+#include <sys/stat.h>
+
 /**
- * str_concat - string concatenate
- * Description: concatenates two strings into a newly created string
- * @s1: string one
- * @s2: string two
- * Return: Pointer to new string
+ * check_file - check file
+ * Description: Checks if a file exists and if the user has execute permissions
+ *              Will check the PATH if given just a filename, or just the given
+ *              location if given a full path.
+ * @filename: Name of the file to check
+ * @path: PATH value from the shell env
+ * Return: The full path name of the file if it is found and can be executed,
+ *         or NULL if either doesn't exist or cannot be executed.
  */
-
-char *str_concat(char *s1, char *s2)
+char *check_file(char *filename, char *path)
 {
-	int s1_size, s2_size, srcindex, dstindex;
-	char *dst;
 
+	if (_strchr(filename, '/') != NULL)
+	{
+		if (access(filename, F_OK | X_OK) == 0)
+			return (_strdup(filename));
+		else
+			return (NULL);
+	}
+	return (find_in_path(filename, path));
+}
 
-	s1_size = _strlen(s1);
-	s2_size = _strlen(s2);
-	dst = malloc(s1_size + s2_size + 1);
+/**
+ * find_in_path - find a file in the PATH
+ * Description: Searches for the location of a file in the PATH
+ * @filename: Name of the file to find
+ * @path: String containing the PATH from the env variable
+ * Return: A pointer to a string containing the full path name of the file
+ *         if it is found, or NULL if the file is not found.
+ */
+char *find_in_path(char *filename, char *path)
+{
+	int index;
+	char **path_dirs;
+	char *dirpath, *fullpath;
 
-	if (dst == NULL)
+	path_dirs = _strtok(path, ':');
+	if (!path_dirs)
 		return (NULL);
-	if (s1 != NULL)
+	for (index = 0; path_dirs[index]; index++)
 	{
-		for (srcindex = 0, dstindex = 0; *(s1 + srcindex);
-		     srcindex ++, dstindex++)
-			*(dst + dstindex) = *(s1 + srcindex);
-	}
-	if (s2 != NULL)
-	{
-		for (srcindex = 0; *(s2 + srcindex); srcindex++, dstindex++)
-			*(dst + dstindex) = *(s2 + srcindex);
-	}
-	*(dst + dstindex) = '\0';
-
-	return (dst);
-}
-
-/**
- * _strlen - Returns lenght of a string
- * @s: Incoming string
- * Description: Counts the number of charaters in a string, returns that number
- * Return: Length of the string
- */
-
-int _strlen(char *s)
-{
-	int strlen = 0;
-
-	while (s[strlen])
-		strlen++;
-
-	return (strlen);
-}
-
-/**
- * _strstr - Search for string
- * Description: Searches for a string within another string.
- * @haystack: String to search through
- * @needle: String to search for
- * Return: Pointer to start of the needle string if found, null otherwise.
- */
-
-char *_strstr(char *haystack, char *needle)
-{
-	int hindex, nindex;
-
-	for (hindex = 0; *(haystack + hindex) != '\0'; hindex++)
-	{
-		for (nindex = 0; *(needle + nindex) != '\0'; nindex++)
+		dirpath = str_concat(path_dirs[index], "/");
+		if (!dirpath)
 		{
-			if (*(haystack + hindex + nindex) != '\0')
-			{
-				if (*(haystack + hindex + nindex) !=
-				    *(needle + nindex))
-					break;
-			}
-			else
-				break;
+			free_array(path_dirs);
+			return (NULL);
 		}
-		if (*(needle + nindex) == '\0')
-			return (haystack + hindex);
+		fullpath = str_concat(dirpath, filename);
+		free(dirpath);
+		if (!fullpath)
+		{
+			free_array(path_dirs);
+			return (NULL);
+		}
+
+		if (access(fullpath, F_OK | X_OK) == 0)
+		{
+			free_array(path_dirs);
+			return(fullpath);
+		}
+
+		free(fullpath);
 	}
-	return (0);
+	free_array(path_dirs);
+	return (NULL);
 }
 
 /**
