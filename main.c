@@ -1,5 +1,6 @@
 #include "holberton.h"
 #include <sys/wait.h>
+#include <signal.h>
 
 int main(int argc, char *argv[], char *env[])
 {
@@ -16,6 +17,7 @@ int main(int argc, char *argv[], char *env[])
 	}
 
 	prompt = (_getenv("PS1", env) ? _getenv("PS1", env) : "$ ");
+	signal(2, SIG_IGN);
 	while (++loop_count)
 	{
 		if (isatty(STDIN_FILENO) == 1)
