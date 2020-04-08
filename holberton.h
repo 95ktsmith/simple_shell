@@ -8,6 +8,9 @@
 #include <stddef.h>
 #include <string.h>
 
+size_t _pow(size_t a, size_t b);
+void stoa(size_t value, char *buffer, size_t base);
+ssize_t not_found(char *shellname, char *cmd_name, size_t cmd_num);
 char *check_file(char *filename, char *path);
 char *find_in_path(char *filename, char *path);
 char *_strdup(char *);

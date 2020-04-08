@@ -3,8 +3,9 @@
 
 int main(int argc, char *argv[], char *env[])
 {
-	char *filepath;
+	char *filepath, *prompt;
 	char **args;
+	size_t loop_count = 0;
 	ssize_t read_bytes;
 	pid_t pid;
 
@@ -14,15 +15,16 @@ int main(int argc, char *argv[], char *env[])
 		return (-1);
 	}
 
-	while (1)
+	prompt = (_getenv("PS1", env) ? _getenv("PS1", env) : "$ ");
+	while (++loop_count)
 	{
-		write(STDOUT_FILENO, "$ ", 2);
+		if (isatty(STDIN_FILENO) == 1)
+			write(STDOUT_FILENO, prompt, _strlen(prompt));
 		args = stdintoargs(&read_bytes);
 		if (read_bytes == -1)
 			break;
-		else if (read_bytes == 0)
+		else if (read_bytes == 1)
 		{
-			write(STDOUT_FILENO, "\n", 1);
 			free(args);
 			continue;
 		}
@@ -36,8 +38,8 @@ int main(int argc, char *argv[], char *env[])
 					free(args);
 					return (0);
 				}
+				not_found(argv[0], args[0], loop_count);
 				free(args);
-				write(STDOUT_FILENO, "Command not found\n", 18);
 				continue;
 			}
 			free(args[0]);
