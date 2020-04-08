@@ -5,7 +5,7 @@ Description coming soon.
 ### Handles:
 Basic functionality\
 PATH\
-exit\
+exit
 
 ### To Do:
 Parse env for PS1 for prompt, default to '$ ' if not found\
@@ -35,4 +35,4 @@ Handle variables replacement, $?, $$\
 Handle comments (#)\
 Handle help built-in\
 Handle history built-in, without arguments\
-Handle file as input\
+Handle file as input
