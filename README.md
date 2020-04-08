@@ -6,12 +6,11 @@ Description coming soon.
 Basic functionality\
 PATH\
 exit
+Parse env for PS1
+Correct error outputs
 
 ### To Do:
-Parse env for PS1 for prompt, default to '$ ' if not found\
 Create 'env' built in. 'env' currently works but as a command, not a built-in\
-Create functions that generates and writes proper error codes
-(ex. ./shell: No such file or directory)\
 Actual README\
 Man page\
 Blog post (ls -l?)
