@@ -5,12 +5,12 @@ Description coming soon.
 ### Handles:
 Basic functionality\
 PATH\
-exit
-Parse env for PS1
-Correct error outputs
+exit\
+Parse env for PS1\
+Correct error outputs (builtins?)\
+env
 
 ### To Do:
-Create 'env' built in. 'env' currently works but as a command, not a built-in\
 Actual README\
 Man page\
 Blog post (ls -l?)
