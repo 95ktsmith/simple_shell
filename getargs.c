@@ -1,13 +1,14 @@
 #include "holberton.h"
 
 /**
- * stdintoargs - standard input to args
+ * getline_to_args - standard input to args
  * Description: Reads a line from the standard input and breaks it into tokens
  * @nbytes: A ssize_t pointer that is updated with how many bytes were read
+ * @stream: FILE stream to read from
  * Return: A pointer to the array of extracted tokens
  */
 
-char **stdintoargs(ssize_t *nbytes)
+char **getline_to_args(ssize_t *nbytes, FILE *stream)
 {
 	char *buffer;
 	size_t buffer_size = 1024;
@@ -17,7 +18,7 @@ char **stdintoargs(ssize_t *nbytes)
 	if (!buffer)
 		return (NULL);
 
-	*nbytes = getline(&buffer, &buffer_size, stdin);
+	*nbytes = getline(&buffer, &buffer_size, stream);
 	if (*nbytes == -1)
 	{
 		free(buffer);

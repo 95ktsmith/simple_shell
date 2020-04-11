@@ -1,19 +1,21 @@
 #include "holberton.h"
 
 /**
- * not_found - file not found
- * Description: Writes a "not found" error message for a command
+ * write_error - write error message
+ * Description: Writes an error message to standard output with details
+ *              of the shell name, command number, command name, and a
+ *              following message.
  * @shellname: The name of the shell. Should be argv[0] from the main function.
  * @cmd_name: Name of the command that was attempted to find and run
  * @cmd_num: Numerical assignment of the command in the history
+ * @msg: Message to write after input details
  * Return: Number of bytes written, or -1 if a write fails.
  */
 
-ssize_t not_found(char *shellname, char *cmd_name, size_t cmd_num)
+ssize_t write_error(char *shellname, char *cmd_name, size_t cmd_num, char *msg)
 {
 	char buffer[1024], num_str[1024];
 	int b_index = 0, t_index;
-	char *notfound = "not found\n";
 
 	if (!shellname)
 		return (-1);
@@ -33,8 +35,9 @@ ssize_t not_found(char *shellname, char *cmd_name, size_t cmd_num)
 		buffer[b_index] = cmd_name[t_index];
 	buffer[b_index++] = ':';
 	buffer[b_index++] = ' ';
-	for (t_index = 0; notfound[t_index]; t_index++, b_index++)
-		buffer[b_index] = notfound[t_index];
+	for (t_index = 0; msg[t_index]; t_index++, b_index++)
+		buffer[b_index] = msg[t_index];
+	buffer[b_index++] = '\n';
 	buffer[b_index] = 0;
 	return (write(STDOUT_FILENO, buffer, _strlen(buffer)));
 }
@@ -51,7 +54,7 @@ void stoa(size_t value, char *buffer, size_t base)
 {
 	size_t digits = 0;
 
-	while(digits < 20)
+	while (digits < 20)
 	{
 		if (value < _pow(base, digits))
 			break;
@@ -59,7 +62,7 @@ void stoa(size_t value, char *buffer, size_t base)
 	}
 	buffer[digits] = 0;
 
-	while(digits--)
+	while (digits--)
 	{
 		buffer[digits] = (value % base) + '0';
 		value /= base;
@@ -77,7 +80,7 @@ size_t _pow(size_t a, size_t b)
 {
 	size_t result = 1;
 
-       	while (b--)
+	while (b--)
 		result *= a;
 	return (result);
 }

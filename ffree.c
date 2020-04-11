@@ -23,3 +23,23 @@ void ffree(const char *fmt, ...)
 			free_array(va_arg(pointers, char **));
 	}
 }
+
+/**
+ * free_env - free environment
+ * Description: Frees the linked list in which all of the environment values
+ *              are stored.
+ * @head: Head of the list
+ */
+
+void free_env(env_t *head)
+{
+	if (!head)
+		return;
+
+	if (head->next)
+		free_env(head->next);
+
+	free(head->val);
+	free(head->var);
+	free(head);
+}
