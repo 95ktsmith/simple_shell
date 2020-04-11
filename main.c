@@ -70,7 +70,10 @@ int find_and_exec(char *argv[], char *args[], char *env[], size_t cmd_num)
 		args[0] = filepath;
 		pid = fork();
 		if (pid == 0)
+		{
 			execve(args[0], args, env);
+			kill(pid, SIGKILL);
+		}
 		else
 			wait(&pid);
 		free_array(args);
