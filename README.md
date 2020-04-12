@@ -18,20 +18,21 @@ Blog post (ls -l?)
 
 ## Advanced
 ### Done:
-Custom strtok
+Custom strtok\
+Comments (#)\
+Should not quit on Ctrl-C (Kind of done. Doesn't quit but doesn't reprint
+prompt.)
 
 ### To Do:
 Test Suite?\
 Custom getline\
 Handle arguments for exit built-in\
-Handle Ctrl+C: Your shell should not quit when the user inputs ^C\
 Handle sentenv and unsetenv built-ins\
 Handle the cd built-in\
 Handle commands separator (;)\
 Handle && and || shell logical operators\
 Handle alias built-in\
 Handle variables replacement, $?, $$\
-Handle comments (#)\
 Handle help built-in\
 Handle history built-in, without arguments\
 Handle file as input

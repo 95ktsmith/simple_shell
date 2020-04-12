@@ -52,6 +52,8 @@ char **_strtok(char *str, char delim)
 	int t_index = 0, s_index = 0, token_len;
 	char prev = 0;
 
+	if (token_count(str, delim) == 0)
+		return (NULL);
 	tokens = malloc((token_count(str, delim) + 1) * sizeof(char *));
 	if (!tokens)
 		return (NULL);

@@ -13,6 +13,7 @@ char **getline_to_args(ssize_t *nbytes, FILE *stream)
 	char *buffer;
 	size_t buffer_size = 1024;
 	char **args;
+	int buf_index = 0;
 
 	buffer = malloc(buffer_size);
 	if (!buffer)
@@ -27,6 +28,15 @@ char **getline_to_args(ssize_t *nbytes, FILE *stream)
 	if (buffer[*nbytes - 1] == '\n')
 		buffer[*nbytes - 1] = 0;
 
+	while (buffer[buf_index])
+	{
+		if (buffer[buf_index] == '#')
+		{
+			buffer[buf_index] = '\0';
+			break;
+		}
+		buf_index++;
+	}
 	args = _strtok(buffer, ' ');
 	free(buffer);
 

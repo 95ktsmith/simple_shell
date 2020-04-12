@@ -29,11 +29,8 @@ int main(int argc, char *argv[], char *env[])
 		args = getline_to_args(&read_bytes, stdin);
 		if (read_bytes == -1)
 			break;
-		else if (read_bytes == 1)
-		{
-			free(args);
+		if (!args)
 			continue;
-		}
 		else
 			find_and_exec(argv, args, env, loop_count);
 	}
