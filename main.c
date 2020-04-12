@@ -13,27 +13,34 @@
 int main(int argc, char *argv[], char *env[])
 {
 	char *prompt;
-	char **args;
-	size_t loop_count = 0;
 	ssize_t read_bytes;
+	param_t *params;
 
 	if (argc < 1)
 		return (-1);
 
+	params = malloc(sizeof(param_t));
+	if (!params)
+		return (-1);
+	params->shellname = argv[0];
+	params->loop_count = 0;
+	params->env = env;
+
 	prompt = (_getenv("PS1", env) ? _getenv("PS1", env) : "$ ");
 	signal(2, SIG_IGN);
-	while (++loop_count)
+	while (++(params->loop_count))
 	{
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
-		args = getline_to_args(&read_bytes, stdin);
+
+		params->args = getline_to_args(&read_bytes, stdin);
 		if (read_bytes == -1)
 			break;
-		if (!args)
-			continue;
-		else
-			find_and_exec(argv, args, env, loop_count);
+
+		if (params->args != NULL)
+			find_and_exec(params);
 	}
+	free_params(params);
 	return (0);
 }
 /**
@@ -49,35 +56,35 @@ int main(int argc, char *argv[], char *env[])
  * @cmd_num: Number of commands since the shell was started
  * Return: 0 on successful execution of builtin or file PATH, -1 otherwise.
  */
-int find_and_exec(char *argv[], char *args[], char *env[], size_t cmd_num)
+int find_and_exec(param_t *params)
 {
 	char *filepath;
 	pid_t pid;
 
-	if (get_builtin(args[0]))
+	if (get_builtin(params->args[0]))
 	{
-		get_builtin(args[0])(args, env, cmd_num);
+		get_builtin(params->args[0])(params);
 		return (0);
 	}
 
-	filepath = check_file(args[0], _getenv("PATH", env));
+	filepath = check_file(params->args[0], _getenv("PATH", params->env));
 	if (filepath)
 	{
-		free(args[0]);
-		args[0] = filepath;
+		free(params->args[0]);
+		params->args[0] = filepath;
 		pid = fork();
 		if (pid == 0)
 		{
-			execve(args[0], args, env);
+			execve(params->args[0], params->args, params->env);
 			kill(pid, SIGKILL);
 		}
 		else
 			wait(&pid);
-		free_array(args);
+		free_array(params->args);
 		return (0);
 	}
 
-	write_error(argv[0], args[0], cmd_num, "not found");
+	write_error(params, "not found");
 	return (-1);
 }
 
@@ -88,7 +95,7 @@ int find_and_exec(char *argv[], char *args[], char *env[], size_t cmd_num)
  * @name: Name of the builtin to look for
  * Return: Pointer to the matching function if found, or NULL if not found.
  */
-void (*get_builtin(char *name))(char *args[], char  *env[], size_t cmd_num)
+void (*get_builtin(char *name))(param_t *params)
 {
 	builtin_t builtins[] = {
 		{"exit", exit_shell},

@@ -8,17 +8,18 @@
  * @cmd_num: Command number
  */
 
-void print_env(char *args[], char *env[], size_t cmd_num)
+void print_env(param_t *params)
 {
 	int index = 0;
 
-	while (env[index])
+	while (params->env[index])
 	{
-		write(STDOUT_FILENO, env[index], _strlen(env[index]));
+		write(STDOUT_FILENO, params->env[index],
+		      _strlen(params->env[index]));
 		write(STDOUT_FILENO, "\n", 1);
 		index++;
 	}
-	free_array(args);
+	free_array(params->args);
 }
 
 /**
@@ -28,9 +29,9 @@ void print_env(char *args[], char *env[], size_t cmd_num)
  * @env: Environment
  * @cmd_num: Command Number
  */
-void exit_shell(char *args[], char *env[], size_t cmd_num)
+void exit_shell(param_t *params)
 {
 
-	free_array(args);
+	free_params(params);
 	exit(0);
 }

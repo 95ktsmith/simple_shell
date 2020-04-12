@@ -12,27 +12,27 @@
  * Return: Number of bytes written, or -1 if a write fails.
  */
 
-ssize_t write_error(char *shellname, char *cmd_name, size_t cmd_num, char *msg)
+ssize_t write_error(param_t *params, char *msg)
 {
 	char buffer[1024], num_str[1024];
 	int b_index = 0, t_index;
 
-	if (!shellname)
+	if (!params->shellname)
 		return (-1);
-	if (!cmd_name)
+	if (!params->args[0])
 		return (-1);
-	for (t_index = 0; shellname[t_index]; t_index++, b_index++)
-		buffer[b_index] = shellname[t_index];
+	for (t_index = 0; params->shellname[t_index]; t_index++, b_index++)
+		buffer[b_index] = params->shellname[t_index];
 	buffer[b_index++] = ':';
 	buffer[b_index++] = ' ';
 
-	stoa(cmd_num, num_str, 10);
+	stoa(params->loop_count, num_str, 10);
 	for (t_index = 0; num_str[t_index]; t_index++, b_index++)
 		buffer[b_index] = num_str[t_index];
 	buffer[b_index++] = ':';
 	buffer[b_index++] = ' ';
-	for (t_index = 0; cmd_name[t_index]; t_index++, b_index++)
-		buffer[b_index] = cmd_name[t_index];
+	for (t_index = 0; params->args[0][t_index]; t_index++, b_index++)
+		buffer[b_index] = params->args[0][t_index];
 	buffer[b_index++] = ':';
 	buffer[b_index++] = ' ';
 	for (t_index = 0; msg[t_index]; t_index++, b_index++)

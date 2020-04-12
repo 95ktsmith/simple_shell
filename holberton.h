@@ -9,6 +9,21 @@
 #include <string.h>
 
 /**
+ * struct params - parameter struct
+ * @loop_count: Number of loops or inputs since the shell was started
+ * @shellname: Name of the file the shell was run as
+ * @args: Tokenized list of arguments from getline
+ * @env: Environment
+ */
+typedef struct params
+{
+	size_t loop_count;
+	char *shellname;
+	char **args;
+	char **env;
+} param_t;
+
+/**
  * struct env_node - Environment node struct
  * @var: Envrionment variable name
  * @val: Variable value
@@ -29,21 +44,24 @@ typedef struct env_node
 typedef struct builtin
 {
 	char *name;
-	void (*f)(char *args[], char *env[], size_t cmd_num);
+	void (*f)(param_t *params);
 } builtin_t;
 
 /* main */
-int find_and_exec(char *argv[], char *args[], char *env[], size_t cmd_num);
-void (*get_builtin(char *name))(char *args[], char *env[], size_t cmd_num);
+int find_and_exec(param_t *params);
+void (*get_builtin(char *name))(param_t *params);
 
 /* builtins_1 */
-void exit_shell(char *args[], char *env[], size_t cmd_num);
-void print_env(char *args[], char *env[], size_t cmd_num);
+void exit_shell(param_t *params);
+void print_env(param_t *params);
 
 /* _getenv */
 char *check_file(char *filename, char *path);
 char *find_in_path(char *filename, char *path);
 char *_getenv(char *var, char *env[]);
+
+/* ffree */
+void free_params(param_t *params);
 
 /* getargs */
 char **getline_to_args(ssize_t *nbytes, FILE *stream);
@@ -58,11 +76,7 @@ char *_getenv_node(char *var, env_t *head);
 /* error funcs */
 size_t _pow(size_t a, size_t b);
 void stoa(size_t value, char *buffer, size_t base);
-ssize_t write_error(char *shellname, char *cmd_name,
-		    size_t cmd_num, char *msg);
-
-char *check_file(char *filename, char *path);
-char *find_in_path(char *filename, char *path);
+ssize_t write_error(param_t *params, char *msg);
 
 /* strfuncs */
 char *_strdup(char *);
