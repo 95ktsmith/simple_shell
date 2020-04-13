@@ -64,6 +64,7 @@ char *_getenv(char *var, char *env[]);
 void free_params(param_t *params);
 void clean_exit(param_t *params);
 void free_env(env_t *head);
+void ffree(const char *fmt, ...);
 
 /* getargs */
 char **getline_to_args(ssize_t *nbytes, FILE *stream, param_t *params);

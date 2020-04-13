@@ -27,11 +27,15 @@ int main(int argc, char *argv[], char *env[])
 	params->env = env;
 
 	prompt = (_getenv("PS1", env) ? _getenv("PS1", env) : "$ ");
-	signal(2, SIG_IGN);
 	while (++(params->loop_count))
 	{
+		signal(2, SIG_IGN);
 		if (isatty(STDIN_FILENO) == 1)
-			write(STDOUT_FILENO, prompt, _strlen(prompt));
+		{
+			if (write(STDOUT_FILENO, prompt,
+				  _strlen(prompt)) != _strlen(prompt))
+				clean_exit(params);
+		}
 
 		params->args = getline_to_args(&read_bytes, stdin, params);
 		if (read_bytes == -1)
