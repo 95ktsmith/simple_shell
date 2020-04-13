@@ -44,9 +44,10 @@ int token_count(char *str, char delim)
  *              an array
  * @str: String to parse
  * @delim: Character that separates tokens
+ * @params: Parameter struct
  * Return: Pointer to array of tokens
  */
-char **_strtok(char *str, char delim)
+char **_strtok(char *str, char delim, param_t *params)
 {
 	char **tokens;
 	int t_index = 0, s_index = 0, token_len;
@@ -56,7 +57,7 @@ char **_strtok(char *str, char delim)
 		return (NULL);
 	tokens = malloc((token_count(str, delim) + 1) * sizeof(char *));
 	if (!tokens)
-		return (NULL);
+		clean_exit(params);
 	while (str[s_index])
 	{
 		if (str[s_index] != delim && (prev == delim || s_index == 0))
@@ -69,7 +70,7 @@ char **_strtok(char *str, char delim)
 			if (!tokens[t_index])
 			{
 				free_array(tokens);
-				return (NULL);
+				clean_exit(params);
 			}
 			tokens[t_index][token_len] = 0;
 			while (token_len-- > 0)

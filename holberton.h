@@ -56,15 +56,17 @@ void exit_shell(param_t *params);
 void print_env(param_t *params);
 
 /* _getenv */
-char *check_file(char *filename, char *path);
-char *find_in_path(char *filename, char *path);
+char *check_file(param_t *params);
+char *find_in_path(param_t *params);
 char *_getenv(char *var, char *env[]);
 
 /* ffree */
 void free_params(param_t *params);
+void clean_exit(param_t *params);
+void free_env(env_t *head);
 
 /* getargs */
-char **getline_to_args(ssize_t *nbytes, FILE *stream);
+char **getline_to_args(ssize_t *nbytes, FILE *stream, param_t *params);
 
 /* listfuncs */
 size_t _pow(size_t a, size_t b);
@@ -87,7 +89,7 @@ int _strlen(char *s);
 
 /* _strtok */
 int token_count(char *, char);
-char **_strtok(char *, char);
+char **_strtok(char *str, char delim, param_t *params);
 void free_array(char **tokens);
 
 #endif /* _HOLBERTON_H_ */

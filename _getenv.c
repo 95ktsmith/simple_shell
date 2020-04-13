@@ -6,39 +6,44 @@
  * Description: Checks if a file exists and if the user has execute permissions
  *              Will check the PATH if given just a filename, or just the given
  *              location if given a full path.
- * @filename: Name of the file to check
- * @path: PATH value from the shell env
+ * @params: Parameter struct
  * Return: The full path name of the file if it is found and can be executed,
  *         or NULL if either doesn't exist or cannot be executed.
  */
-char *check_file(char *filename, char *path)
+char *check_file(param_t *params)
 {
+	char *filepath;
 
-	if (_strchr(filename, '/') != NULL)
+	if (_strchr(params->args[0], '/') != NULL)
 	{
-		if (access(filename, F_OK | X_OK) == 0)
-			return (_strdup(filename));
+		if (access(params->args[0], F_OK | X_OK) == 0)
+		{
+			filepath = _strdup(params->args[0]);
+			if (!filepath)
+				clean_exit(params);
+			return (filepath);
+		}
 		else
 			return (NULL);
 	}
-	return (find_in_path(filename, path));
+	filepath = find_in_path(params);
+	return (filepath);
 }
 
 /**
  * find_in_path - find a file in the PATH
  * Description: Searches for the location of a file in the PATH
- * @filename: Name of the file to find
- * @path: String containing the PATH from the env variable
+ * @params: Parameter struct
  * Return: A pointer to a string containing the full path name of the file
  *         if it is found, or NULL if the file is not found.
  */
-char *find_in_path(char *filename, char *path)
+char *find_in_path(param_t *params)
 {
 	int index;
 	char **path_dirs;
 	char *dirpath, *fullpath;
 
-	path_dirs = _strtok(path, ':');
+	path_dirs = _strtok(_getenv("PATH", params->env), ':', params);
 	if (!path_dirs)
 		return (NULL);
 	for (index = 0; path_dirs[index]; index++)
@@ -47,14 +52,14 @@ char *find_in_path(char *filename, char *path)
 		if (!dirpath)
 		{
 			free_array(path_dirs);
-			return (NULL);
+			clean_exit(params);
 		}
-		fullpath = str_concat(dirpath, filename);
+		fullpath = str_concat(dirpath, params->args[0]);
 		free(dirpath);
 		if (!fullpath)
 		{
 			free_array(path_dirs);
-			return (NULL);
+			clean_exit(params);
 		}
 
 		if (access(fullpath, F_OK | X_OK) == 0)

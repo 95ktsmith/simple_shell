@@ -33,7 +33,7 @@ int main(int argc, char *argv[], char *env[])
 		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, prompt, _strlen(prompt));
 
-		params->args = getline_to_args(&read_bytes, stdin);
+		params->args = getline_to_args(&read_bytes, stdin, params);
 		if (read_bytes == -1)
 			break;
 
@@ -50,16 +50,13 @@ int main(int argc, char *argv[], char *env[])
  *              found, it will look through the PATH to find a match, executing
  *              that file if found. If no match is found, it will print an
  *              error.
- * @argv: Argument vector from main
- * @args: Tokenized arguments from stdin or file
- * @env: Environment
- * @cmd_num: Number of commands since the shell was started
+ * @params: Parameter struct
  * Return: 0 on successful execution of builtin or file PATH, -1 otherwise.
  */
 int find_and_exec(param_t *params)
 {
-	char *filepath;
 	pid_t pid;
+	char *filepath;
 
 	if (get_builtin(params->args[0]))
 	{
@@ -67,7 +64,7 @@ int find_and_exec(param_t *params)
 		return (0);
 	}
 
-	filepath = check_file(params->args[0], _getenv("PATH", params->env));
+	filepath = check_file(params);
 	if (filepath)
 	{
 		free(params->args[0]);
@@ -84,7 +81,7 @@ int find_and_exec(param_t *params)
 		return (0);
 	}
 
-	write_error(params, "not found");
+	write_error(params, "not found\n");
 	return (-1);
 }
 

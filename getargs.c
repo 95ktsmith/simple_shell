@@ -5,10 +5,11 @@
  * Description: Reads a line from the standard input and breaks it into tokens
  * @nbytes: A ssize_t pointer that is updated with how many bytes were read
  * @stream: FILE stream to read from
+ * @params: Parameter struct
  * Return: A pointer to the array of extracted tokens
  */
 
-char **getline_to_args(ssize_t *nbytes, FILE *stream)
+char **getline_to_args(ssize_t *nbytes, FILE *stream, param_t *params)
 {
 	char *buffer;
 	size_t buffer_size = 1024;
@@ -17,7 +18,7 @@ char **getline_to_args(ssize_t *nbytes, FILE *stream)
 
 	buffer = malloc(buffer_size);
 	if (!buffer)
-		return (NULL);
+		clean_exit(params);
 
 	*nbytes = getline(&buffer, &buffer_size, stream);
 	if (*nbytes == -1)
@@ -37,7 +38,7 @@ char **getline_to_args(ssize_t *nbytes, FILE *stream)
 		}
 		buf_index++;
 	}
-	args = _strtok(buffer, ' ');
+	args = _strtok(buffer, ' ', params);
 	free(buffer);
 
 	return (args);

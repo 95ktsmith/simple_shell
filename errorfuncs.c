@@ -5,9 +5,7 @@
  * Description: Writes an error message to standard output with details
  *              of the shell name, command number, command name, and a
  *              following message.
- * @shellname: The name of the shell. Should be argv[0] from the main function.
- * @cmd_name: Name of the command that was attempted to find and run
- * @cmd_num: Numerical assignment of the command in the history
+ * @params: Parameter struct
  * @msg: Message to write after input details
  * Return: Number of bytes written, or -1 if a write fails.
  */
@@ -16,6 +14,7 @@ ssize_t write_error(param_t *params, char *msg)
 {
 	char buffer[1024], num_str[1024];
 	int b_index = 0, t_index;
+	ssize_t written_bytes;
 
 	if (!params->shellname)
 		return (-1);
@@ -37,9 +36,12 @@ ssize_t write_error(param_t *params, char *msg)
 	buffer[b_index++] = ' ';
 	for (t_index = 0; msg[t_index]; t_index++, b_index++)
 		buffer[b_index] = msg[t_index];
-	buffer[b_index++] = '\n';
 	buffer[b_index] = 0;
-	return (write(STDOUT_FILENO, buffer, _strlen(buffer)));
+
+	written_bytes = write(STDOUT_FILENO, buffer, _strlen(buffer));
+	if (written_bytes != _strlen(buffer))
+		clean_exit(params);
+	return (written_bytes);
 }
 
 /**

@@ -2,6 +2,30 @@
 #include <stdarg.h>
 
 /**
+ * clean_exit - exit program cleanly
+ * Description: Frees everything inside of the parameter struct and exits
+ * @params: Parameter struct
+ */
+void clean_exit(param_t *params)
+{
+	free_params(params);
+	exit(1);
+}
+/**
+ * free_params - free params struct
+ * Description: Frees a parameters struct
+ * @params: struct to free
+ */
+void free_params(param_t *params)
+{
+	if (!params)
+		return;
+	if (params->args)
+		free_array(params->args);
+	free(params);
+}
+
+/**
  * ffree - formatted free
  * Description: Takes a format string, like printf, and frees given pointers
  *              accordingly, whether they are a single pointer (s), or a double
