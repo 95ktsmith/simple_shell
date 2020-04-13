@@ -70,6 +70,8 @@ int find_and_exec(param_t *params)
 		free(params->args[0]);
 		params->args[0] = filepath;
 		pid = fork();
+		if (pid == -1)
+			clean_exit(params);
 		if (pid == 0)
 		{
 			execve(params->args[0], params->args, params->env);

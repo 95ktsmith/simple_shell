@@ -21,12 +21,12 @@ Blog post (ls -l?)
 Custom strtok\
 Comments (#)\
 Should not quit on Ctrl-C (Kind of done. Doesn't quit but doesn't reprint
-prompt.)
+prompt.)\
+Handle arguments to exit
 
 ### To Do:
 Test Suite?\
 Custom getline\
-Handle arguments for exit built-in\
 Handle sentenv and unsetenv built-ins\
 Handle the cd built-in\
 Handle commands separator (;)\
