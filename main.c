@@ -88,6 +88,7 @@ int find_and_exec(param_t *params)
 	}
 
 	write_error(params, "not found\n");
+	free_array(params->args);
 	return (-1);
 }
 
