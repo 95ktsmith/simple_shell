@@ -42,8 +42,8 @@
 
 ### Compilation
 
-*The shell will be compiled this way:
-* `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
+*The shell will be compiled this way:*
+`gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
 
 ## Mandatory
 ### Handles:
@@ -55,8 +55,9 @@ Correct error outputs (builtins?)\
 env
 
 ### To Do:
-Actual README\
+
 * [Shell man page](./man_1_simple_shell)
+
 Blog post (ls -l?)
 
 
