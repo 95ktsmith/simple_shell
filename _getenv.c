@@ -27,9 +27,47 @@ char *check_file(param_t *params)
 			return (NULL);
 	}
 	filepath = find_in_path(params);
+	if (filepath)
+		return (filepath);
+
+	filepath = find_in_pwd(params);
 	return (filepath);
 }
 
+/**
+ * find_in_pwd - find a file in current working directory
+ * Description: Searches the current working directory for a file that can
+ *              be executed by the user.
+ * @params: Parameter struct
+ * Return: A pointer to the string containing the full path name of the file
+ *         if it is found, or NULL if the file is not found.
+ */
+char *find_in_pwd(param_t *params)
+{
+	char *dirpath, *fullpath, *pwd;
+
+	pwd = _getenv("PWD", params->env);
+	if (!pwd || _strlen(pwd) < 1)
+		return (NULL);
+
+	if (pwd[_strlen(pwd) - 1] != '/')
+		dirpath = str_concat(pwd, "/");
+	else
+		dirpath = _strdup(pwd);
+	if (!dirpath)
+		clean_exit(params);
+
+	fullpath = str_concat(dirpath, params->args[0]);
+	free(dirpath);
+	if (!fullpath)
+		clean_exit(params);
+
+	if (access(fullpath, F_OK | X_OK) == 0)
+		return (fullpath);
+
+	free(fullpath);
+	return (NULL);
+}
 /**
  * find_in_path - find a file in the PATH
  * Description: Searches for the location of a file in the PATH
@@ -48,12 +86,16 @@ char *find_in_path(param_t *params)
 		return (NULL);
 	for (index = 0; path_dirs[index]; index++)
 	{
-		dirpath = str_concat(path_dirs[index], "/");
+		if (path_dirs[index][_strlen(path_dirs[index]) - 1] != '/')
+			dirpath = str_concat(path_dirs[index], "/");
+		else
+			dirpath = _strdup(path_dirs[index]);
 		if (!dirpath)
 		{
 			free_array(path_dirs);
 			clean_exit(params);
 		}
+
 		fullpath = str_concat(dirpath, params->args[0]);
 		free(dirpath);
 		if (!fullpath)

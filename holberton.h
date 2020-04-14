@@ -59,6 +59,7 @@ void print_env(param_t *params);
 char *check_file(param_t *params);
 char *find_in_path(param_t *params);
 char *_getenv(char *var, char *env[]);
+char *find_in_pwd(param_t *params);
 
 /* ffree */
 void free_params(param_t *params);
