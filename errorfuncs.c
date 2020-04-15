@@ -38,7 +38,7 @@ ssize_t write_error(param_t *params, char *msg)
 		buffer[b_index] = msg[t_index];
 	buffer[b_index] = 0;
 
-	written_bytes = write(STDOUT_FILENO, buffer, _strlen(buffer));
+	written_bytes = write(STDERR_FILENO, buffer, _strlen(buffer));
 	if (written_bytes != _strlen(buffer))
 		clean_exit(params);
 	return (written_bytes);
