@@ -48,6 +48,7 @@ void exit_shell(param_t *params)
 		}
 		if (status == EXIT_SUCCESS)
 		{
+			status = 0;
 			index = 0;
 			while (params->args[1][index])
 			{
