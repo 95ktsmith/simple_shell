@@ -39,6 +39,11 @@ int main(int argc, char *argv[], char *env[])
 
 		params->args = getline_to_args(&read_bytes, stdin, params);
 		if (read_bytes == -1)
+		{
+			if (isatty(STDIN_FILENO) == 1)
+				if (write(STDOUT_FILENO, "\n", 1) != 1)
+					clean_exit(params, EXIT_FAILURE);
+		}
 			break;
 
 		if (params->args != NULL)
