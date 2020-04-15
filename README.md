@@ -1,10 +1,10 @@
-# Simple Shell
+# Holberton Shell - Simple Shell
 
 ## Description
 
-* A simple UNIX command line interpreter, or shell.
+* Holberton Shell (hsh) is a simple command line interpreter for a Linux environment.
 
-## Project tasks :computer:
+## Project tasks  :computer:
 
 
 ### Authorized functions and system calls
@@ -45,6 +45,22 @@
 *The shell will be compiled this way:*
 `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
 
+## Repository contents
+
+* [AUTHORS](./AUTHORS)
+* [README.md](./README.md)
+* [_getenv.c](./_getenv.c)
+* [_strtok.c](./_strtok.c)
+* [builtins_1.c](./builtins_1.c)
+* [errorfuncs.c](./errorfuncs.c)
+* [ffree.c](./ffree.c)
+* [getargs.c](./getargs.c)
+* [holberton.h](./holberton.h)
+* [list_funcs.c](./list_funcs.c)
+* [main.c](./main.c)
+* [man_1_hsh](./man_1_hsh)
+* [strfuncs.c](./strfuncs.c)
+
 ## Mandatory
 ### Handles:
 Basic functionality\
@@ -54,14 +70,7 @@ Parse env for PS1\
 Correct error outputs (builtins?)\
 env
 
-### To Do:
 
-* [Shell man page](./man_1_simple_shell)
-
-Blog post (ls -l?)
-
-
-## Advanced
 ### Done:
 Custom strtok\
 Comments (#)\
@@ -82,18 +91,4 @@ Handle help built-in\
 Handle history built-in, without arguments\
 Handle file as input
 
-
-AUTHORS
-builtins_1.c
-errorfuncs.c
-ffree.c
-getargs.c
-_getenv.c
-holberton.h
-list_funcs.c
-main.c
-man_3_simple_shell
-README.md
-shell
-strfuncs.c
-_strtok.c
+## Testing
