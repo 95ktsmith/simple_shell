@@ -45,6 +45,33 @@
 *The shell will be compiled this way:*
 `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
 
+## Testing
+
+In interactive mode:
+```
+$ ./hsh
+($) /bin/ls
+hsh main.c shell.c
+($)
+($) exit
+$
+```
+
+In non-interactive mode:
+```
+$ echo "/bin/ls" | ./hsh
+hsh main.c shell.c test_ls_2
+$
+$ cat test_ls_2
+/bin/ls
+/bin/ls
+$
+$ cat test_ls_2 | ./hsh
+hsh main.c shell.c test_ls_2
+hsh main.c shell.c test_ls_2
+$
+```
+
 ## Repository contents
 
 * [AUTHORS](./AUTHORS)
@@ -61,8 +88,9 @@
 * [man_1_hsh](./man_1_hsh)
 * [strfuncs.c](./strfuncs.c)
 
-## Mandatory
-### Handles:
+## Mandatory tasks  :wrench:
+
+* Coding style used is [Betty](./https://github.com/holbertonschool/Betty/wiki) style.
 Basic functionality\
 PATH\
 exit\
@@ -90,5 +118,3 @@ Handle variables replacement, $?, $$\
 Handle help built-in\
 Handle history built-in, without arguments\
 Handle file as input
-
-## Testing
