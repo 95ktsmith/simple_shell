@@ -18,7 +18,7 @@ char **getline_to_args(ssize_t *nbytes, FILE *stream, param_t *params)
 
 	buffer = malloc(buffer_size);
 	if (!buffer)
-		clean_exit(params);
+		clean_exit(params, EXIT_FAILURE);
 
 	*nbytes = getline(&buffer, &buffer_size, stream);
 	if (*nbytes == -1)

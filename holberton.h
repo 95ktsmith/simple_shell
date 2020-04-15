@@ -1,6 +1,7 @@
 #ifndef _HOLBERTON_H_
 #define _HOLBERTON_H_
 
+#include <errno.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -63,7 +64,7 @@ char *find_in_pwd(param_t *params);
 
 /* ffree */
 void free_params(param_t *params);
-void clean_exit(param_t *params);
+void clean_exit(param_t *params, int status);
 void free_env(env_t *head);
 void ffree(const char *fmt, ...);
 

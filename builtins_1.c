@@ -16,10 +16,10 @@ void print_env(param_t *params)
 		written_bytes = write(STDOUT_FILENO, params->env[index],
 		      _strlen(params->env[index]));
 		if (written_bytes != _strlen(params->env[index]))
-			clean_exit(params);
+			clean_exit(params, 1);
 		written_bytes = write(STDOUT_FILENO, "\n", 1);
 		if (written_bytes != 1)
-			clean_exit(params);
+			clean_exit(params, 1);
 		index++;
 	}
 	free_array(params->args);
@@ -32,7 +32,7 @@ void print_env(param_t *params)
  */
 void exit_shell(param_t *params)
 {
-	int index = 0, status = 0;
+	int index = 0, status = EXIT_SUCCESS;
 
 	if (params->args[1])
 	{
@@ -41,12 +41,12 @@ void exit_shell(param_t *params)
 			if (params->args[1][index] < '0' ||
 			    params->args[1][index] > '9')
 			{
-				status = -1;
+				status = EXIT_FAILURE;
 				break;
 			}
 			index++;
 		}
-		if (status == 0)
+		if (status == EXIT_SUCCESS)
 		{
 			index = 0;
 			while (params->args[1][index])
@@ -62,9 +62,9 @@ void exit_shell(param_t *params)
 		write_error(params, "Illegal Number: ");
 		if (write(STDOUT_FILENO, params->args[1],
 			  _strlen(params->args[1])) != _strlen(params->args[1]))
-			clean_exit(params);
+			clean_exit(params, EXIT_FAILURE);
 		if (write(STDOUT_FILENO, "\n", 1) != 1)
-			clean_exit(params);
+			clean_exit(params, EXIT_FAILURE);
 		return;
 	}
 	free_params(params);

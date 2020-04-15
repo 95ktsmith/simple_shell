@@ -6,10 +6,10 @@
  * Description: Frees everything inside of the parameter struct and exits
  * @params: Parameter struct
  */
-void clean_exit(param_t *params)
+void clean_exit(param_t *params, int status)
 {
 	free_params(params);
-	exit(1);
+	exit(status);
 }
 /**
  * free_params - free params struct

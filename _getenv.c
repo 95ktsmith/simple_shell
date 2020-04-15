@@ -20,7 +20,7 @@ char *check_file(param_t *params)
 		{
 			filepath = _strdup(params->args[0]);
 			if (!filepath)
-				clean_exit(params);
+				clean_exit(params, EXIT_FAILURE);
 			return (filepath);
 		}
 		else
@@ -55,12 +55,12 @@ char *find_in_pwd(param_t *params)
 	else
 		dirpath = _strdup(pwd);
 	if (!dirpath)
-		clean_exit(params);
+		clean_exit(params, EXIT_FAILURE);
 
 	fullpath = str_concat(dirpath, params->args[0]);
 	free(dirpath);
 	if (!fullpath)
-		clean_exit(params);
+		clean_exit(params, EXIT_FAILURE);
 
 	if (access(fullpath, F_OK | X_OK) == 0)
 		return (fullpath);
@@ -93,7 +93,7 @@ char *find_in_path(param_t *params)
 		if (!dirpath)
 		{
 			free_array(path_dirs);
-			clean_exit(params);
+			clean_exit(params, EXIT_FAILURE);
 		}
 
 		fullpath = str_concat(dirpath, params->args[0]);
@@ -101,7 +101,7 @@ char *find_in_path(param_t *params)
 		if (!fullpath)
 		{
 			free_array(path_dirs);
-			clean_exit(params);
+			clean_exit(params, EXIT_FAILURE);
 		}
 
 		if (access(fullpath, F_OK | X_OK) == 0)

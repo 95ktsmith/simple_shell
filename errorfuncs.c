@@ -40,7 +40,7 @@ ssize_t write_error(param_t *params, char *msg)
 
 	written_bytes = write(STDERR_FILENO, buffer, _strlen(buffer));
 	if (written_bytes != _strlen(buffer))
-		clean_exit(params);
+		clean_exit(params, EXIT_FAILURE);
 	return (written_bytes);
 }
 

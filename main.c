@@ -34,7 +34,7 @@ int main(int argc, char *argv[], char *env[])
 		{
 			if (write(STDOUT_FILENO, prompt,
 				  _strlen(prompt)) != _strlen(prompt))
-				clean_exit(params);
+				clean_exit(params, EXIT_FAILURE);
 		}
 
 		params->args = getline_to_args(&read_bytes, stdin, params);
@@ -75,7 +75,7 @@ int find_and_exec(param_t *params)
 		params->args[0] = filepath;
 		pid = fork();
 		if (pid == -1)
-			clean_exit(params);
+			clean_exit(params, EXIT_FAILURE);
 		if (pid == 0)
 		{
 			execve(params->args[0], params->args, params->env);

@@ -57,7 +57,7 @@ char **_strtok(char *str, char delim, param_t *params)
 		return (NULL);
 	tokens = malloc((token_count(str, delim) + 1) * sizeof(char *));
 	if (!tokens)
-		clean_exit(params);
+		clean_exit(params, EXIT_FAILURE);
 	while (str[s_index])
 	{
 		if (str[s_index] != delim && (prev == delim || s_index == 0))
@@ -70,7 +70,7 @@ char **_strtok(char *str, char delim, param_t *params)
 			if (!tokens[t_index])
 			{
 				free_array(tokens);
-				clean_exit(params);
+				clean_exit(params, EXIT_FAILURE);
 			}
 			tokens[t_index][token_len] = 0;
 			while (token_len-- > 0)
