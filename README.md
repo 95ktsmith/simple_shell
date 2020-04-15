@@ -42,12 +42,19 @@
 
 ### Compilation
 
-*The shell will be compiled this way:*
+The shell will be compiled this way:
+
 `gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
 
-## Testing
+### Quick start guide
 
-In interactive mode:
+To start interactive mode, type the following into the terminal:
+
+`./hsh`
+
+### Testing
+
+**In interactive mode:**
 ```
 $ ./hsh
 ($) /bin/ls
@@ -57,7 +64,7 @@ hsh main.c shell.c
 $
 ```
 
-In non-interactive mode:
+**In non-interactive mode:**
 ```
 $ echo "/bin/ls" | ./hsh
 hsh main.c shell.c test_ls_2
