@@ -56,9 +56,10 @@ void exit_shell(param_t *params)
 				status += params->args[1][index] - '0';
 				index++;
 			}
+			status %= 256;
 		}
 	}
-	if (status < 0 || status > 255)
+	if (status < 0)
 	{
 		write_error(params, "Illegal Number: ");
 		if (write(STDOUT_FILENO, params->args[1],
