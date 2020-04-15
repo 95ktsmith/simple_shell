@@ -63,7 +63,7 @@ char **_strtok(char *str, char delim, param_t *params)
 		if (str[s_index] != delim && (prev == delim || s_index == 0))
 		{
 			token_len = 0;
-			while (str[token_len] &&
+			while (str[token_len + s_index] &&
 			       str[token_len + s_index] != delim)
 				token_len++;
 			tokens[t_index] = malloc(token_len + 1);
