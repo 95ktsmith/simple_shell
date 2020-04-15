@@ -5,6 +5,7 @@
  * clean_exit - exit program cleanly
  * Description: Frees everything inside of the parameter struct and exits
  * @params: Parameter struct
+ * @status: Status to exit with
  */
 void clean_exit(param_t *params, int status)
 {
