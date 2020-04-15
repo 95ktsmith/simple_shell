@@ -91,8 +91,8 @@ char *str_concat(char *s1, char *s2);
 int _strlen(char *s);
 
 /* _strtok */
-int token_count(char *, char);
-char **_strtok(char *str, char delim, param_t *params);
+int token_count(char *str, char *delims);
+char **_strtok(char *str, char *delims, param_t *params);
 void free_array(char **tokens);
 
 #endif /* _HOLBERTON_H_ */

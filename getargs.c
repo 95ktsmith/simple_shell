@@ -38,7 +38,7 @@ char **getline_to_args(ssize_t *nbytes, FILE *stream, param_t *params)
 		}
 		buf_index++;
 	}
-	args = _strtok(buffer, ' ', params);
+	args = _strtok(buffer, " \n\v\r\a\t", params);
 	free(buffer);
 
 	return (args);

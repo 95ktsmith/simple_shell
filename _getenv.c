@@ -44,10 +44,6 @@ char *check_file(param_t *params)
 	if (filepath)
 		return (filepath);
 
-	filepath = find_in_pwd(params);
-	if (filepath)
-		return (filepath);
-
 	write_error(params, "not found\n");
 	return (NULL);
 }
@@ -99,7 +95,7 @@ char *find_in_path(param_t *params)
 	char **path_dirs;
 	char *dirpath, *fullpath;
 
-	path_dirs = _strtok(_getenv("PATH", params->env), ':', params);
+	path_dirs = _strtok(_getenv("PATH", params->env), ":", params);
 	if (!path_dirs)
 		return (NULL);
 	for (index = 0; path_dirs[index]; index++)

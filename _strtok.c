@@ -23,14 +23,15 @@ void free_array(char **tokens)
  * @delim: character that separates tokens
  * Return: Number of tokens
  */
-int token_count(char *str, char delim)
+int token_count(char *str, char *delims)
 {
 	int tokens = 0, index = 0;
 	char prev = 0;
 
 	while (str[index])
 	{
-		if (str[index] != delim && (prev == delim || index == 0))
+		if (!_strchr(delims, str[index]) &&
+		    (_strchr(delims, prev) || index == 0))
 			tokens++;
 		prev = str[index];
 		index++;
@@ -47,24 +48,25 @@ int token_count(char *str, char delim)
  * @params: Parameter struct
  * Return: Pointer to array of tokens
  */
-char **_strtok(char *str, char delim, param_t *params)
+char **_strtok(char *str, char *delims, param_t *params)
 {
 	char **tokens;
 	int t_index = 0, s_index = 0, token_len;
 	char prev = 0;
 
-	if (token_count(str, delim) == 0)
+	if (token_count(str, delims) == 0)
 		return (NULL);
-	tokens = malloc((token_count(str, delim) + 1) * sizeof(char *));
+	tokens = malloc((token_count(str, delims) + 1) * sizeof(char *));
 	if (!tokens)
 		clean_exit(params, EXIT_FAILURE);
 	while (str[s_index])
 	{
-		if (str[s_index] != delim && (prev == delim || s_index == 0))
+		if (!_strchr(delims, str[s_index])
+		    && (_strchr(delims, prev) || s_index == 0))
 		{
 			token_len = 0;
 			while (str[token_len + s_index] &&
-			       str[token_len + s_index] != delim)
+			       !_strchr(delims, str[token_len + s_index]))
 				token_len++;
 			tokens[t_index] = malloc(token_len + 1);
 			if (!tokens[t_index])
