@@ -1,5 +1,6 @@
 #include "holberton.h"
 #include <sys/stat.h>
+#include <dirent.h>
 
 /**
  * check_file - check file
@@ -13,9 +14,19 @@
 char *check_file(param_t *params)
 {
 	char *filepath;
+	DIR *dir;
 
 	if (_strchr(params->args[0], '/') != NULL)
 	{
+		dir = opendir(params->args[0]);
+		if (dir != NULL)
+		{
+			write_error(params, "Permission denied\n");
+			if (closedir(dir) == -1)
+				clean_exit(params, EXIT_FAILURE);
+			return (NULL);
+		}
+
 		if (access(params->args[0], F_OK | X_OK) == 0)
 		{
 			filepath = _strdup(params->args[0]);
@@ -24,14 +35,21 @@ char *check_file(param_t *params)
 			return (filepath);
 		}
 		else
+		{
+			write_error(params, "not found\n");
 			return (NULL);
+		}
 	}
 	filepath = find_in_path(params);
 	if (filepath)
 		return (filepath);
 
 	filepath = find_in_pwd(params);
-	return (filepath);
+	if (filepath)
+		return (filepath);
+
+	write_error(params, "not found\n");
+	return (NULL);
 }
 
 /**

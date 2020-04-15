@@ -18,14 +18,12 @@ int main(int argc, char *argv[], char *env[])
 
 	if (argc < 1)
 		return (-1);
-
 	params = malloc(sizeof(param_t));
 	if (!params)
 		return (-1);
 	params->shellname = argv[0];
 	params->loop_count = 0;
 	params->env = env;
-
 	prompt = (_getenv("PS1", env) ? _getenv("PS1", env) : "$ ");
 	while (++(params->loop_count))
 	{
@@ -39,11 +37,6 @@ int main(int argc, char *argv[], char *env[])
 
 		params->args = getline_to_args(&read_bytes, stdin, params);
 		if (read_bytes == -1)
-		{
-			if (isatty(STDIN_FILENO) == 1)
-				if (write(STDOUT_FILENO, "\n", 1) != 1)
-					clean_exit(params, EXIT_FAILURE);
-		}
 			break;
 
 		if (params->args != NULL)
@@ -84,7 +77,7 @@ int find_and_exec(param_t *params)
 		if (pid == 0)
 		{
 			execve(params->args[0], params->args, params->env);
-			kill(pid, SIGKILL);
+			kill(0, SIGKILL);
 		}
 		else
 			wait(&pid);
@@ -92,7 +85,6 @@ int find_and_exec(param_t *params)
 		return (0);
 	}
 
-	write_error(params, "not found\n");
 	free_array(params->args);
 	return (-1);
 }
