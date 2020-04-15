@@ -27,11 +27,11 @@ char *check_file(param_t *params)
 			return (NULL);
 	}
 	filepath = find_in_path(params);
-	if (filepath)
+/*	if (filepath)
 		return (filepath);
 
 	filepath = find_in_pwd(params);
-	return (filepath);
+*/	return (filepath);
 }
 
 /**
@@ -95,7 +95,6 @@ char *find_in_path(param_t *params)
 			free_array(path_dirs);
 			clean_exit(params, EXIT_FAILURE);
 		}
-
 		fullpath = str_concat(dirpath, params->args[0]);
 		free(dirpath);
 		if (!fullpath)
