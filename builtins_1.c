@@ -59,6 +59,7 @@ void exit_shell(param_t *params)
 	}
 	if (status < 0 || status > 255)
 	{
+		errno = 2;
 		write_error(params, "Illegal Number: ");
 		if (write(STDOUT_FILENO, params->args[1],
 			  _strlen(params->args[1])) != _strlen(params->args[1]))
