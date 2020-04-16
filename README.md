@@ -2,7 +2,7 @@
 
 ## Description
 
-* Holberton Shell (hsh) is a simple command line interpreter for a Linux environment.
+* Holberton Shell (hsh) is a simple command line interpreter for a Linux environment.  Hsh works like 
 
 ## Project tasks  :computer:
 
@@ -79,6 +79,23 @@ hsh main.c shell.c test_ls_2
 $
 ```
 
+**Syntax**
+
+To display man page: `man ./man_1_simple_shell`
+
+Commands can be given to the shell with the general syntax: `command_name {arguments}`
+
+**Built-ins implemented**
+
+There are several built-in commands used for job control incorporated into hsh.
+
+* exit -
+
+* env, setenv, unsetenv
+
+* cd -
+
+
 ## Repository contents
 
 * [AUTHORS](./AUTHORS)
@@ -113,19 +130,6 @@ $
 * Handle errors.
 * You have to handle the “end of file” condition (Ctrl+D)
 
-**Syntax**
-
-`
-
-**Built-ins implemented**
-
-There are several built-in commands used for job control incorporated into hsh.
-
-* exit -
-
-* env, setenv, unsetenv
-
-* cd -
 
 ### 5. Simple shell
 
