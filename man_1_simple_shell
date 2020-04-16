@@ -187,6 +187,10 @@ Complex commands are combinations of simple commands with control operators or r
 
      Unless otherwise stated, the exit status of a command is that of the last simple command executed by the command.
 
+
+
+.B Components not implemented in this release:
+
 Pipelines
 A pipeline is a sequence of one or more commands separated by the control operator |.  The standard output of all but the last command is connected to the standard input of the next command.  The standard output of the last command is inherited from the shell, as usual.
 
