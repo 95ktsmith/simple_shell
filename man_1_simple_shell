@@ -144,7 +144,6 @@ Enclosing characters in single quotes preserves the literal meaning of all the c
 Double Quotes
 Enclosing characters within double quotes preserves the literal meaning of all characters except dollarsign ($), backquote (`), and back slash (\).  The backslash inside double quotes is historically weird, and serves to quote only the following characters: $ ` " \ <newline>.  Otherwise it remains literal.
 
-
 Aliases
 An alias is a name and corresponding value set using the alias(1) builtin command.  Whenever a reserved word may occur (see above), and after checking for reserved words, the shell checks the word to see if it matches an alias.  If it does, it replaces it in the input stream with its value.  Aliases provide a convenient way for naive users to create shorthands for commands without having to learn how to create functions with arguments.
 
@@ -162,8 +161,7 @@ Redirections are used to change where a command reads its input or sends its out
 
            [n] redir-op file
 
-     where redir-op is one of the redirection operators mentioned previously.  Following is a list of the possible redirections.  The [n] is an
-     optional number, as in ‘3’ (not ‘[3]’), that refers to a file descriptor.
+where redir-op is one of the redirection operators mentioned previously.  Following is a list of the possible redirections.  The [n] is an optional number, as in ‘3’ (not ‘[3]’), that refers to a file descriptor.
 
            [n]> file   Redirect standard output (or n) to file.
 
@@ -183,11 +181,7 @@ Redirections are used to change where a command reads its input or sends its out
 
            [n]<> file  Open file for reading and writing on standard input (or n).
 
-     All the text on successive lines up to the delimiter is saved away and made available to the command on standard input, or file descriptor
-     n if it is specified.  If the delimiter as specified on the initial line is quoted, then the here-doc-text is treated literally, otherwise
-     the text is subjected to parameter expansion, command substitution, and arithmetic expansion.  If the operator is “<<-” instead of “<<”, then leading tabs in the here-doc-text are stripped.
-
-   Search and Execution
+Search and Execution
      There are three types of commands: shell functions, builtin commands, and normal programs -- and the command is searched for (by name) in
      that order.  They each are executed in a different way.
 
