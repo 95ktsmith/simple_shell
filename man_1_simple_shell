@@ -52,29 +52,35 @@ typedef struct builtin
 } builtin_t;
 
 /* main */
-int find_and_exec(param_t *params);
-void (*get_builtin(char *name))(param_t *params);
+
+   int find_and_exec(param_t *params);
+   void (*get_builtin(char *name))(param_t *params);
 
 /* builtins_1 */
-void exit_shell(param_t *params);
-void print_env(param_t *params);
+
+   void exit_shell(param_t *params);
+   void print_env(param_t *params);
 
 /* _getenv */
+
 char *check_file(param_t *params);
 char *find_in_path(param_t *params);
 char *_getenv(char *var, char *env[]);
 char *find_in_pwd(param_t *params);
 
 /* ffree */
+
 void free_params(param_t *params);
 void clean_exit(param_t *params, int status);
 void free_env(env_t *head);
 void ffree(const char *fmt, ...);
 
 /* getargs */
+
 char **getline_to_args(ssize_t *nbytes, FILE *stream, param_t *params);
 
 /* listfuncs */
+
 size_t _pow(size_t a, size_t b);
 int _strcmp(char *s1, char *s2);
 env_t *env_to_list(char *env[]);
@@ -82,11 +88,13 @@ env_t *add_env_node(env_t **head, char *var, char *val);
 char *_getenv_node(char *var, env_t *head);
 
 /* error funcs */
+
 size_t _pow(size_t a, size_t b);
 void stoa(size_t value, char *buffer, size_t base);
 ssize_t write_error(param_t *params, char *msg);
 
 /* strfuncs */
+
 char *_strdup(char *);
 char *_strchr(char *, char);
 char *_strstr(char *haystack, char *needle);
@@ -94,6 +102,7 @@ char *str_concat(char *s1, char *s2);
 int _strlen(char *s);
 
 /* _strtok */
+
 int token_count(char *, char);
 char **_strtok(char *str, char delim, param_t *params);
 void free_array(char **tokens);
