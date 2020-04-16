@@ -209,11 +209,11 @@ Note that unlike some other shells, each process in the pipeline is a child of t
 Background Commands -- &
 If a command is terminated by the control operator ampersand (&), the shell executes the command asynchronously -- that is, the shell does not wait for the command to finish before executing the next command.
 
-     The format for running a command in background is:
+The format for running a command in background is:
 
            command1 & [command2 & ...]
 
-     If the shell is not interactive, the standard input of an asynchronous command is set to /dev/null.
+If the shell is not interactive, the standard input of an asynchronous command is set to /dev/null.
 
 Lists -- Generally Speaking
      A list is a sequence of zero or more commands separated by newlines, semicolons, or ampersands, and optionally terminated by one of these
