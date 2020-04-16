@@ -187,8 +187,6 @@ Complex commands are combinations of simple commands with control operators or r
 
      Unless otherwise stated, the exit status of a command is that of the last simple command executed by the command.
 
-
-
 .B Components not implemented in this release:
 
 Pipelines
