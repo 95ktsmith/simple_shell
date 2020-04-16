@@ -1042,14 +1042,6 @@ ENVIRONMENT
 
      CDPATH     The search path used with the cd builtin.
 
-     MAIL       The name of a mail file, that will be checked for the arrival of new mail.  Overridden by MAILPATH.
-
-     MAILCHECK  The frequency in seconds that the shell checks for the arrival of mail in the files specified by the MAILPATH or the MAIL file.
-                If set to 0, the check will occur at each prompt.
-
-     MAILPATH   A colon “:” separated list of file names, for the shell to check for incoming mail.  This environment setting overrides the MAIL
-                setting.  There is a maximum of 10 mailboxes that can be monitored at once.
-
      PS1        The primary prompt string, which defaults to “$ ”, unless you are the superuser, in which case it defaults to “# ”.
 
      PS2        The secondary prompt string, which defaults to “> ”.
@@ -1069,4 +1061,3 @@ ENVIRONMENT
      OLDPWD     The previous logical value of the current working directory.  This is set by the cd command.
 
      PPID       The process ID of the parent process of the shell.
-
