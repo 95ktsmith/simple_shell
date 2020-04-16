@@ -145,41 +145,20 @@ Double Quotes
 Enclosing characters within double quotes preserves the literal meaning of all characters except dollarsign ($), backquote (`), and back slash (\).  The backslash inside double quotes is historically weird, and serves to quote only the following characters: $ ` " \ <newline>.  Otherwise it remains literal.
 
 
-   Aliases
-     An alias is a name and corresponding value set using the alias(1) builtin command.  Whenever a reserved word may occur (see above), and
-     after checking for reserved words, the shell checks the word to see if it matches an alias.  If it does, it replaces it in the input stream
-     with its value.  For example, if there is an alias called “lf” with the value “ls -F”, then the input:
+Aliases
+An alias is a name and corresponding value set using the alias(1) builtin command.  Whenever a reserved word may occur (see above), and after checking for reserved words, the shell checks the word to see if it matches an alias.  If it does, it replaces it in the input stream with its value.  Aliases provide a convenient way for naive users to create shorthands for commands without having to learn how to create functions with arguments.
 
-           lf foobar ⟨return⟩
+Simple Commands
+If a simple command has been recognized, the shell performs the following actions:
 
-     would become
+   1.   Leading words of the form “name=value” are stripped off and assigned to the environment of the simple command.  Redirection operators and their arguments (as described below) are stripped off and saved for processing.
 
-           ls -F foobar ⟨return⟩
+   2.   The remaining words are expanded as described in the section called “Expansions”, and the first remaining word is considered the command name and the command is located.  The remaining words are considered the arguments of the command.  If no command name resulted, then the “name=value” variable assignments recognized in item 1 affect the current shell.
 
-     Aliases provide a convenient way for naive users to create shorthands for commands without having to learn how to create functions with
-     arguments.  They can also be used to create lexically obscure code.  This use is discouraged.
+   3.   Redirections are performed as described in the next section.
 
-   Commands
-     The shell interprets the words it reads according to a language, the specification of which is outside the scope of this man page (refer to
-     the BNF in the POSIX 1003.2 document).  Essentially though, a line is read and if the first word of the line (or after a control operator)
-     is not a reserved word, then the shell has recognized a simple command.  Otherwise, a complex command or some other special construct may
-     have been recognized.
-
-   Simple Commands
-     If a simple command has been recognized, the shell performs the following actions:
-
-           1.   Leading words of the form “name=value” are stripped off and assigned to the environment of the simple command.  Redirection
-                operators and their arguments (as described below) are stripped off and saved for processing.
-
-           2.   The remaining words are expanded as described in the section called “Expansions”, and the first remaining word is considered the
-                command name and the command is located.  The remaining words are considered the arguments of the command.  If no command name
-                resulted, then the “name=value” variable assignments recognized in item 1 affect the current shell.
-
-           3.   Redirections are performed as described in the next section.
-
-   Redirections
-     Redirections are used to change where a command reads its input or sends its output.  In general, redirections open, close, or duplicate an
-     existing reference to a file.  The overall format used for redirection is:
+Redirections
+Redirections are used to change where a command reads its input or sends its output.  In general, redirections open, close, or duplicate an existing reference to a file.  The overall format used for redirection is:
 
            [n] redir-op file
 
