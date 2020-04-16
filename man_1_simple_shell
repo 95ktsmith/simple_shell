@@ -216,15 +216,10 @@ The format for running a command in background is:
 If the shell is not interactive, the standard input of an asynchronous command is set to /dev/null.
 
 Lists -- Generally Speaking
-     A list is a sequence of zero or more commands separated by newlines, semicolons, or ampersands, and optionally terminated by one of these
-     three characters.  The commands in a list are executed in the order they are written.  If command is followed by an ampersand, the shell
-     starts the command and immediately proceed onto the next command; otherwise it waits for the command to terminate before proceeding to the
-     next one.
+A list is a sequence of zero or more commands separated by newlines, semicolons, or ampersands, and optionally terminated by one of these three characters.  The commands in a list are executed in the order they are written.  If command is followed by an ampersand, the shell starts the command and immediately proceed onto the next command; otherwise it waits for the command to terminate before proceeding to the next one.
 
 Short-Circuit List Operators
-     “&&” and “||” are AND-OR list operators.  “&&” executes the first command, and then executes the second command iff the exit status of the
-     first command is zero.  “||” is similar, but executes the second command iff the exit status of the first command is nonzero.  “&&” and
-     “||” both have the same priority.
+“&&” and “||” are AND-OR list operators.  “&&” executes the first command, and then executes the second command iff the exit status of the first command is zero.  “||” is similar, but executes the second command iff the exit status of the first command is nonzero.  “&&” and “||” both have the same priority.
 
 Variables and Parameters
      The shell maintains a set of parameters.  A parameter denoted by a name is called a variable.  When starting up, the shell turns all the
