@@ -2,7 +2,7 @@
 
 ## Description
 
-* Holberton Shell (hsh) is a simple command line interpreter for a Unix environment. WIthin this
+Holberton Shell (hsh) is a simple command line interpreter for a Unix environment. WIthin this
 repository are all the file required for the shell to be compiled and run, as well as man and author pages.
 
 ## How to Use
