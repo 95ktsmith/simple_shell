@@ -4,9 +4,6 @@
 
 * Holberton Shell (hsh) is a simple command line interpreter for a Linux environment.  Hsh works like 
 
-## Project tasks  :computer:
-
-
 ### Authorized functions and system calls
 
 * access (man 2 access)
