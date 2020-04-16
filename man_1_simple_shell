@@ -2,6 +2,7 @@
 .SH NAME
 .B simple shell
 - Holberton SHell command interpreter.
+
 .SH SYNOPSIS
 
 #include <errno.h>
