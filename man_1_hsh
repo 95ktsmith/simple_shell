@@ -1,6 +1,6 @@
 .TH man 1 "15 April 2020" "1.0" "hsh man page"
 .SH NAME
-.B hsh -
+.B simple shell
 - Holberton SHell command interpreter.
 .SH SYNOPSIS
 
@@ -99,32 +99,20 @@ char **_strtok(char *str, char delim, param_t *params);
 void free_array(char **tokens);
 
 
-
-
-
 .SH DESCRIPTION
-hsh is a simple command interpreter.  Only a few of the features designated by POSIX, are being incorporated into this shell.  This man page is not intended to be a tutorial or a complete specification of the shell.
+Simple shell is a simple command interpreter.  Only a few of the features designated by POSIX, are being incorporated into this shell.  This man page is not intended to be a tutorial or a complete specification of the shell.
 
-* c: a char data type
-* s: an array of char data type
-* %: conversion format specifier
-* d: integer data type simple conversion
-* i: integer data type
 
 .SH OPTIONS
- The function returns an integer value equal to the length of the character string that is prints to standard output.
+holder
 
 
 .SH SEE ALSO
 .I peerlearning(2), projectbased(2), fullstack(2), Betty(1)
 .SH BUGS
-Does not adhere to the 40 lines per function suggested limit of the C coding stlye for Holberton School.  Does not handle
-flag characters, field width, precision, length modifiers or alternate character meanings with a backslash, or printing special
-characters preceded by a backslash.
+Holder.
 .SH AUTHOR
 Amilcar Armmand and Kevin Smith
-
-
 
 
 NAME
