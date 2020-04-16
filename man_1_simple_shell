@@ -222,13 +222,11 @@ Short-Circuit List Operators
 “&&” and “||” are AND-OR list operators.  “&&” executes the first command, and then executes the second command iff the exit status of the first command is zero.  “||” is similar, but executes the second command iff the exit status of the first command is nonzero.  “&&” and “||” both have the same priority.
 
 Variables and Parameters
-     The shell maintains a set of parameters.  A parameter denoted by a name is called a variable.  When starting up, the shell turns all the
-     environment variables into shell variables.  New variables can be set using the form
+The shell maintains a set of parameters.  A parameter denoted by a name is called a variable.  When starting up, the shell turns all the environment variables into shell variables.  New variables can be set using the form
 
            name=value
 
-     Variables set by the user must have a name consisting solely of alphabetics, numerics, and underscores - the first of which must not be
-     numeric.  A parameter can also be denoted by a number or a special character as explained below.
+Variables set by the user must have a name consisting solely of alphabetics, numerics, and underscores - the first of which must not be numeric.  A parameter can also be denoted by a number or a special character as explained below.
 
 Special Parameters
      A special parameter is a parameter denoted by one of the following special characters.  The value of the parameter is listed next to its
