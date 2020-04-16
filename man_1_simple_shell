@@ -272,7 +272,7 @@ Variables and Parameters
      Variables set by the user must have a name consisting solely of alphabetics, numerics, and underscores - the first of which must not be
      numeric.  A parameter can also be denoted by a number or a special character as explained below.
 
-   Special Parameters
+Special Parameters
      A special parameter is a parameter denoted by one of the following special characters.  The value of the parameter is listed next to its
      character.
 
@@ -434,36 +434,13 @@ Amilcar Armmand and Kevin Smith
      a string containing a slash, and second, a pattern cannot match a string starting with a period unless the first character of the pattern
      is a period.  The next section describes the patterns used for both Pathname Expansion and the case command.
 
-   Shell Patterns
-     A pattern consists of normal characters, which match themselves, and meta-characters.  The meta-characters are “!”, “*”, “?”, and “[”.
-     These characters lose their special meanings if they are quoted.  When command or variable substitution is performed and the dollar sign or
-     back quotes are not double quoted, the value of the variable or the output of the command is scanned for these characters and they are
-     turned into meta-characters.
+Builtins
+This section lists the builtin commands which are builtin because they need to perform some operation that can't be performed by a separate process.  In addition to these, there are several other commands that may be builtin for efficiency (e.g.  printf(1), echo(1), test(1), etc).
 
-     An asterisk (“*”) matches any string of characters.  A question mark matches any single character.  A left bracket (“[”) introduces a char‐
-     acter class.  The end of the character class is indicated by a (“]”); if the “]” is missing then the “[” matches a “[” rather than intro‐
-     ducing a character class.  A character class matches any of the characters between the square brackets.  A range of characters may be spec‐
-     ified using a minus sign.  The character class may be complemented by making an exclamation point the first character of the character
-     class.
+The commands in the specified file are read and executed by the shell.
 
-     To include a “]” in a character class, make it the first character listed (after the “!”, if any).  To include a minus sign, make it the
-     first or last character listed.
-
-   Builtins
-     This section lists the builtin commands which are builtin because they need to perform some operation that can't be performed by a separate
-     process.  In addition to these, there are several other commands that may be builtin for efficiency (e.g.  printf(1), echo(1), test(1),
-     etc).
-
-     :
-
-     true   A null command that returns a 0 (true) exit value.
-
-     . file
-            The commands in the specified file are read and executed by the shell.
-
-     alias [name[=string ...]]
-            If name=string is specified, the shell defines the alias name with value string.  If just name is specified, the value of the alias
-            name is printed.  With no arguments, the alias builtin prints the names and values of all defined aliases (see unalias).
+    alias [name[=string ...]]
+    If name=string is specified, the shell defines the alias name with value string.  If just name is specified, the value of the aliasname is printed.  With no arguments, the alias builtin prints the names and values of all defined aliases (see unalias).
 
      bg [job] ...
             Continue the specified jobs (or the current job if no jobs are given) in the background.
