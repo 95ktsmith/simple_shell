@@ -63,49 +63,49 @@ typedef struct builtin
 
 /* _getenv */
 
-char *check_file(param_t *params);
-char *find_in_path(param_t *params);
-char *_getenv(char *var, char *env[]);
-char *find_in_pwd(param_t *params);
+   char *check_file(param_t *params);
+   char *find_in_path(param_t *params);
+   char *_getenv(char *var, char *env[]);
+   char *find_in_pwd(param_t *params);
 
 /* ffree */
 
-void free_params(param_t *params);
-void clean_exit(param_t *params, int status);
-void free_env(env_t *head);
-void ffree(const char *fmt, ...);
+   void free_params(param_t *params);
+   void clean_exit(param_t *params, int status);
+   void free_env(env_t *head);
+   void ffree(const char *fmt, ...);
 
 /* getargs */
 
-char **getline_to_args(ssize_t *nbytes, FILE *stream, param_t *params);
+   char **getline_to_args(ssize_t *nbytes, FILE *stream, param_t *params);
 
 /* listfuncs */
 
-size_t _pow(size_t a, size_t b);
-int _strcmp(char *s1, char *s2);
-env_t *env_to_list(char *env[]);
-env_t *add_env_node(env_t **head, char *var, char *val);
-char *_getenv_node(char *var, env_t *head);
+   size_t _pow(size_t a, size_t b);
+   int _strcmp(char *s1, char *s2);
+   env_t *env_to_list(char *env[]);
+   env_t *add_env_node(env_t **head, char *var, char *val);
+   char *_getenv_node(char *var, env_t *head);
 
 /* error funcs */
 
-size_t _pow(size_t a, size_t b);
-void stoa(size_t value, char *buffer, size_t base);
-ssize_t write_error(param_t *params, char *msg);
+   size_t _pow(size_t a, size_t b);
+   void stoa(size_t value, char *buffer, size_t base);
+   ssize_t write_error(param_t *params, char *msg);
 
 /* strfuncs */
 
-char *_strdup(char *);
-char *_strchr(char *, char);
-char *_strstr(char *haystack, char *needle);
-char *str_concat(char *s1, char *s2);
-int _strlen(char *s);
+   char *_strdup(char *);
+   char *_strchr(char *, char);
+   char *_strstr(char *haystack, char *needle);
+   char *str_concat(char *s1, char *s2);
+   int _strlen(char *s);
 
 /* _strtok */
 
-int token_count(char *, char);
-char **_strtok(char *str, char delim, param_t *params);
-void free_array(char **tokens);
+   int token_count(char *, char);
+   char **_strtok(char *str, char delim, param_t *params);
+   void free_array(char **tokens);
 
 
 .SH DESCRIPTION
@@ -113,85 +113,14 @@ void free_array(char **tokens);
 
 Holberton shell is a simple command interpreter.  Only a few of the features designated by POSIX, are being incorporated into this shell.  This man page is not intended to be a tutorial or a complete specification of the shell. The shell is a command that reads lines from either a file or the terminal, interprets them, and generally executes other commands.  It is the program that is running when a user logs into the system (although a user can select a different shell with the chsh(1) command).  The shell implements a language that has flow control constructs, a macro facility that provides a variety of features in addition to data storage, along with built in history and line editing capabilities.  It incorporates many features to aid interactive use and has the advantage that the interpretative language is common to both interactive and non-interactive use (shell scripts).  That is, commands can be typed directly to the running shell or can be put into a file and the file can be executed directly by the shell.
 
-   Invocation
-If no args are present and if the standard input of the shell is connected to a terminal, the shell is considered an interactive shell.  An interactive shell generally prompts before each command and handles program ming and command errors differently (as described below).
+.B Invocation
+
+If no args are present and if the standard input of the shell is connected to a terminal, the shell is considered an interactive shell.  An interactive shell generally prompts before each command and handles program ming and command errors differently (as described below).  This is normally done automatically  when the user first logs in.  A login shell first reads commands from the files /etc/profile and .profile if they exist.  If the environment variable ENV is set on entry to an interactive shell, or is set in the .profile of a login shell, the shell next reads commands from the file named in ENV.  If command line arguments besides the options have been specified, then the shell treats the first argument as the name of a file from which to read commands (a shell script), and the remaining arguments are set as the positional parameters of the shell (stdout, stderr, etc).  Otherwise, the shell reads commands from its standard input.
+
 
 .SH OPTIONS
-holder
 
-
-.SH SEE ALSO
-.I peerlearning(2), projectbased(2), fullstack(2), Betty(1)
-.SH BUGS
-Holder.
-.SH AUTHOR
-Amilcar Armmand and Kevin Smith
-
-
-
-
-*********
-
-  This is normally done automatically by the system when the user first logs in.  A login
-     shell first reads commands from the files /etc/profile and .profile if they exist.  If the environment variable ENV is set on entry to an
-     interactive shell, or is set in the .profile of a login shell, the shell next reads commands from the file named in ENV.  Therefore, a user
-     should place commands that are to be executed only at login time in the .profile file, and commands that are executed for every interactive
-     shell inside the ENV file.  To set the ENV variable to some file, place the following line in your .profile of your home directory
-
-           ENV=$HOME/.shinit; export ENV
-
-     substituting for “.shinit” any filename you wish.
-
-     If command line arguments besides the options have been specified, then the shell treats the first argument as the name of a file from
-     which to read commands (a shell script), and the remaining arguments are set as the positional parameters of the shell ($1, $2, etc).  Oth‐
-     erwise, the shell reads commands from its standard input.
-
-   Argument List Processing
-     All of the single letter options that have a corresponding name can be used as an argument to the -o option.  The set -o name is provided
-     next to the single letter option in the description below.  Specifying a dash “-” turns the option on, while using a plus “+” disables the
-     option.  The following options can be set from the command line or with the set builtin (described later).
-
-           -a allexport     Export all variables assigned to.
-
-           -c               Read commands from the command_string operand instead of from the standard input.  Special parameter 0 will be set
-                            from the command_name operand and the positional parameters ($1, $2, etc.)  set from the remaining argument oper‐
-                            ands.
-
-           -C noclobber     Don't overwrite existing files with “>”.
-
-           -e errexit       If not interactive, exit immediately if any untested command fails.  The exit status of a command is considered to
-                            be explicitly tested if the command is used to control an if, elif, while, or until; or if the command is the left
-                            hand operand of an “&&” or “||” operator.
-
-           -f noglob        Disable pathname expansion.
-
-           -n noexec        If not interactive, read commands but do not execute them.  This is useful for checking the syntax of shell scripts.
-
-           -u nounset       Write a message to standard error when attempting to expand a variable that is not set, and if the shell is not
-                            interactive, exit immediately.
-
-           -v verbose       The shell writes its input to standard error as it is read.  Useful for debugging.
-
-           -x xtrace        Write each command to standard error (preceded by a ‘+ ’) before it is executed.  Useful for debugging.
-
-           -I ignoreeof     Ignore EOF's from input when interactive.
-
-           -i interactive   Force the shell to behave interactively.
-
-           -l               Make dash act as if it had been invoked as a login shell.
-
-           -m monitor       Turn on job control (set automatically when interactive).
-
-           -s stdin         Read commands from standard input (set automatically if no file arguments are present).  This option has no effect
-                            when set after the shell has already started running (i.e. with set).
-
-           -V vi            Enable the built-in vi(1) command line editor (disables -E if it has been set).
-
-           -E emacs         Enable the built-in emacs(1) command line editor (disables -V if it has been set).
-
-           -b notify        Enable asynchronous notification of background job completion.  (UNIMPLEMENTED for 4.4alpha)
-
-   Lexical Structure
+   Syntax Structure
      The shell reads input in terms of lines from a file and breaks it up into words at whitespace (blanks and tabs), and at certain sequences
      of characters that are special to the shell called “operators”.  There are two types of operators: control operators and redirection opera‐
      tors (their meaning is discussed later).  Following is a list of operators:
@@ -220,15 +149,6 @@ Amilcar Armmand and Kevin Smith
            $ ` " \ <newline>.
      Otherwise it remains literal.
 
-   Reserved Words
-     Reserved words are words that have special meaning to the shell and are recognized at the beginning of a line and after a control operator.
-     The following are reserved words:
-
-           !       elif    fi      while   case
-           else    for     then    {       }
-           do      done    until   if      esac
-
-     Their meaning is discussed later.
 
    Aliases
      An alias is a name and corresponding value set using the alias(1) builtin command.  Whenever a reserved word may occur (see above), and
@@ -289,16 +209,9 @@ Amilcar Armmand and Kevin Smith
 
            [n]<> file  Open file for reading and writing on standard input (or n).
 
-     The following redirection is often called a “here-document”.
-
-           [n]<< delimiter
-                 here-doc-text ...
-           delimiter
-
      All the text on successive lines up to the delimiter is saved away and made available to the command on standard input, or file descriptor
      n if it is specified.  If the delimiter as specified on the initial line is quoted, then the here-doc-text is treated literally, otherwise
-     the text is subjected to parameter expansion, command substitution, and arithmetic expansion (as described in the section on “Expansions”).
-     If the operator is “<<-” instead of “<<”, then leading tabs in the here-doc-text are stripped.
+     the text is subjected to parameter expansion, command substitution, and arithmetic expansion.  If the operator is “<<-” instead of “<<”, then leading tabs in the here-doc-text are stripped.
 
    Search and Execution
      There are three types of commands: shell functions, builtin commands, and normal programs -- and the command is searched for (by name) in
@@ -561,6 +474,20 @@ Amilcar Armmand and Kevin Smith
 
      The $ character is used to introduce parameter expansion, command substitution, or arithmetic evaluation.
 
+
+
+
+
+
+.SH SEE ALSO
+.I peerlearning(2), projectbased(2), fullstack(2), Betty(1)
+.SH BUGS
+Holder.
+.SH AUTHOR
+Amilcar Armmand and Kevin Smith
+
+
+*********
    Tilde Expansion (substituting a user's home directory)
      A word beginning with an unquoted tilde character (~) is subjected to tilde expansion.  All the characters up to a slash (/) or the end of
      the word are treated as a username and are replaced with the user's home directory.  If the username is missing (as in ~/foobar), the tilde
@@ -823,48 +750,6 @@ Amilcar Armmand and Kevin Smith
      fg [job]
             Move the specified job or the current job to the foreground.
 
-     getopts optstring var
-            The POSIX getopts command, not to be confused with the Bell Labs -derived getopt(1).
-
-            The first argument should be a series of letters, each of which may be optionally followed by a colon to indicate that the option
-            requires an argument.  The variable specified is set to the parsed option.
-
-            The getopts command deprecates the older getopt(1) utility due to its handling of arguments containing whitespace.
-
-            The getopts builtin may be used to obtain options and their arguments from a list of parameters.  When invoked, getopts places the
-            value of the next option from the option string in the list in the shell variable specified by var and its index in the shell vari‐
-            able OPTIND.  When the shell is invoked, OPTIND is initialized to 1.  For each option that requires an argument, the getopts builtin
-            will place it in the shell variable OPTARG.  If an option is not allowed for in the optstring, then OPTARG will be unset.
-
-            optstring is a string of recognized option letters (see getopt(3)).  If a letter is followed by a colon, the option is expected to
-            have an argument which may or may not be separated from it by white space.  If an option character is not found where expected,
-            getopts will set the variable var to a “?”; getopts will then unset OPTARG and write output to standard error.  By specifying a
-            colon as the first character of optstring all errors will be ignored.
-
-            A nonzero value is returned when the last option is reached.  If there are no remaining arguments, getopts will set var to the spe‐
-            cial option, “--”, otherwise, it will set var to “?”.
-
-            The following code fragment shows how one might process the arguments for a command that can take the options [a] and [b], and the
-            option [c], which requires an argument.
-
-                  while getopts abc: f
-                  do
-                          case $f in
-                          a | b)  flag=$f;;
-                          c)      carg=$OPTARG;;
-                          \?)     echo $USAGE; exit 1;;
-                          esac
-                  done
-                  shift `expr $OPTIND - 1`
-
-            This code will accept any of the following as equivalent:
-
-                  cmd -acarg file file
-                  cmd -a -c arg file file
-                  cmd -carg -a file file
-                  cmd -a -carg -- file file
-
-
      pwd [-LP]
             builtin command remembers what the current directory is rather than recomputing it each time.  This makes it faster.  However, if
             the current directory is renamed, the builtin version of pwd will continue to print the old name for the directory.  The -P option
@@ -1003,13 +888,6 @@ Amilcar Armmand and Kevin Smith
      wait [job]
             Wait for the specified job to complete and return the exit status of the last process in the job.  If the argument is omitted, wait
             for all jobs to complete and the return an exit status of zero.
-
-   Command Line Editing
-     When dash is being used interactively from a terminal, the current command and the command history (see fc in Builtins) can be edited using
-     vi-mode command-line editing.  This mode uses commands, described below, similar to a subset of those described in the vi man page.  The
-     command ‘set -o vi’ enables vi-mode editing and place sh into vi insert mode.  With vi-mode enabled, sh can be switched between insert mode
-     and command mode.  The editor is not described in full here, but will be in a later document.  It's similar to vi: typing ⟨ESC⟩ will throw
-     you into command VI command mode.  Hitting ⟨return⟩ while in command mode will pass the line to the shell.
 
 EXIT STATUS
      Errors that are detected by the shell, such as a syntax error, will cause the shell to exit with a non-zero exit status.  If the shell is
