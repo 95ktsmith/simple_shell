@@ -500,8 +500,7 @@ Amilcar Armmand and Kevin Smith
             resolved to their respective values.  The -L option turns off the effect of any preceding -P options.
 
      echo [-n] args...
-            Print the arguments on the standard output, separated by spaces.  Unless the -n option is present, a newline is output following the
-            arguments.
+            Print the arguments on the standard output, separated by spaces.  Unless the -n option is present, a newline is output following the arguments.
 
             If any of the following sequences of characters is encountered during output, the sequence is not output.  Instead, the specified
             action is performed:
@@ -521,133 +520,6 @@ Amilcar Armmand and Kevin Smith
 
             \v      Output a vertical tab.
 
-            \0digits
-                    Output the character whose value is given by zero to three octal digits.  If there are zero digits, a nul character is out‐
-                    put.
-
-            \\      Output a backslash.
-
-            All other backslash sequences elicit undefined behaviour.
-
-     eval string ...
-            Concatenate all the arguments with spaces.  Then re-parse and execute the command.
-
-     exec [command arg ...]
-            Unless command is omitted, the shell process is replaced with the specified program (which must be a real program, not a shell
-            builtin or function).  Any redirections on the exec command are marked as permanent, so that they are not undone when the exec com‐
-            mand finishes.
-
-     exit [exitstatus]
-            Terminate the shell process.  If exitstatus is given it is used as the exit status of the shell; otherwise the exit status of the
-            preceding command is used.
-
-     export name ...
-
-     export -p
-            The specified names are exported so that they will appear in the environment of subsequent commands.  The only way to un-export a
-            variable is to unset it.  The shell allows the value of a variable to be set at the same time it is exported by writing
-
-                  export name=value
-
-            With no arguments the export command lists the names of all exported variables.  With the -p option specified the output will be
-            formatted suitably for non-interactive use.
-
-     fc [-e editor] [first [last]]
-
-     fc -l [-nr] [first [last]]
-
-     fc -s [old=new] [first]
-            The fc builtin lists, or edits and re-executes, commands previously entered to an interactive shell.
-
-            -e editor
-                   Use the editor named by editor to edit the commands.  The editor string is a command name, subject to search via the PATH
-                   variable.  The value in the FCEDIT variable is used as a default when -e is not specified.  If FCEDIT is null or unset, the
-                   value of the EDITOR variable is used.  If EDITOR is null or unset, ed(1) is used as the editor.
-
-            -l (ell)
-                   List the commands rather than invoking an editor on them.  The commands are written in the sequence indicated by the first
-                   and last operands, as affected by -r, with each command preceded by the command number.
-
-            -n     Suppress command numbers when listing with -l.
-
-            -r     Reverse the order of the commands listed (with -l) or edited (with neither -l nor -s).
-
-            -s     Re-execute the command without invoking an editor.
-
-            first
-
-            last   Select the commands to list or edit.  The number of previous commands that can be accessed are determined by the value of the
-                   HISTSIZE variable.  The value of first or last or both are one of the following:
-
-                   [+]number
-                          A positive number representing a command number; command numbers can be displayed with the -l option.
-
-                   -number
-                          A negative decimal number representing the command that was executed number of commands previously.  For example, -1
-                          is the immediately previous command.
-
-            string
-                   A string indicating the most recently entered command that begins with that string.  If the old=new operand is not also spec‐
-                   ified with -s, the string form of the first operand cannot contain an embedded equal sign.
-
-            The following environment variables affect the execution of fc:
-
-            FCEDIT    Name of the editor to use.
-
-            HISTSIZE  The number of previous commands that are accessible.
-
-     fg [job]
-            Move the specified job or the current job to the foreground.
-
-     pwd [-LP]
-            builtin command remembers what the current directory is rather than recomputing it each time.  This makes it faster.  However, if
-            the current directory is renamed, the builtin version of pwd will continue to print the old name for the directory.  The -P option
-            causes the physical value of the current working directory to be shown, that is, all symbolic links are resolved to their respective
-            values.  The -L option turns off the effect of any preceding -P options.
-
-     read [-p prompt] [-r] variable [...]
-            The prompt is printed if the -p option is specified and the standard input is a terminal.  Then a line is read from the standard
-            input.  The trailing newline is deleted from the line and the line is split as described in the section on word splitting above, and
-            the pieces are assigned to the variables in order.  At least one variable must be specified.  If there are more pieces than vari‐
-            ables, the remaining pieces (along with the characters in IFS that separated them) are assigned to the last variable.  If there are
-            more variables than pieces, the remaining variables are assigned the null string.  The read builtin will indicate success unless EOF
-            is encountered on input, in which case failure is returned.
-
-            By default, unless the -r option is specified, the backslash “\” acts as an escape character, causing the following character to be
-            treated literally.  If a backslash is followed by a newline, the backslash and the newline will be deleted.
-
-     set [{ -options | +options | -- }] arg ...
-            The set command performs three different functions.
-
-            With no arguments, it lists the values of all shell variables.
-
-            If options are given, it sets the specified option flags, or clears them as described in the section called Argument List
-            Processing.  As a special case, if the option is -o or +o and no argument is supplied, the shell prints the settings of all its
-            options.  If the option is -o, the settings are printed in a human-readable format; if the option is +o, the settings are printed in
-            a format suitable for reinput to the shell to affect the same option settings.
-
-            The third use of the set command is to set the values of the shell's positional parameters to the specified args.  To change the
-            positional parameters without changing any options, use “--” as the first argument to set.  If no args are present, the set command
-            will clear all the positional parameters (equivalent to executing “shift $#”.)
-
-
-            These primaries can be combined with the following operators:
-
-            ! expression  True if expression is false.
-
-            expression1 -a expression2
-                          True if both expression1 and expression2 are true.
-
-            expression1 -o expression2
-                          True if either expression1 or expression2 are true.
-
-            (expression)  True if expression is true.
-
-            The -a operator has higher precedence than the -o operator.
-
-     umask [mask]
-            Set the value of umask (see umask(2)) to the specified octal value.  If the argument is omitted, the umask value is printed.
-
      unalias [-a] [name]
             If name is specified, the shell removes that alias.  If -a is specified, all aliases are removed.
 
@@ -661,34 +533,4 @@ Amilcar Armmand and Kevin Smith
             for all jobs to complete and the return an exit status of zero.
 
 EXIT STATUS
-     Errors that are detected by the shell, such as a syntax error, will cause the shell to exit with a non-zero exit status.  If the shell is
-     not an interactive shell, the execution of the shell file will be aborted.  Otherwise the shell will return the exit status of the last
-     command executed, or if the exit builtin is used with a numeric argument, it will return the argument.
-
-ENVIRONMENT
-     HOME       Set automatically by login(1) from the user's login directory in the password file (passwd(4)).  This environment variable also
-                functions as the default argument for the cd builtin.
-
-     PATH       The default search path for executables.  See the above section Path Search.
-
-     CDPATH     The search path used with the cd builtin.
-
-     PS1        The primary prompt string, which defaults to “$ ”, unless you are the superuser, in which case it defaults to “# ”.
-
-     PS2        The secondary prompt string, which defaults to “> ”.
-
-     PS4        Output before each line when execution trace (set -x) is enabled, defaults to “+ ”.
-
-     IFS        Input Field Separators.  This is normally set to ⟨space⟩, ⟨tab⟩, and ⟨newline⟩.  See the White Space Splitting section for more
-                details.
-
-     TERM       The default terminal setting for the shell.  This is inherited by children of the shell, and is used in the history editing
-                modes.
-
-     HISTSIZE   The number of lines in the history buffer for the shell.
-
-     PWD        The logical value of the current working directory.  This is set by the cd command.
-
-     OLDPWD     The previous logical value of the current working directory.  This is set by the cd command.
-
-     PPID       The process ID of the parent process of the shell.
+     Errors that are detected by the shell, such as a syntax error, will cause the shell to exit with a non-zero exit status.  If the shell is not an interactive shell, the execution of the shell file will be aborted.  Otherwise the shell will return the exit status of the last command executed, or if the exit builtin is used with a numeric argument, it will return the argument.
