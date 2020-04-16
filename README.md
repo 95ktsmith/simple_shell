@@ -89,12 +89,12 @@ Commands can be given to the shell with the general syntax: `command_name {argum
 
 There are several built-in commands used for job control incorporated into hsh.
 
-* exit -
-
 * env, setenv, unsetenv
 
-* cd -
+* exit - To exit the hsh shell, the user may use the exit built-in. Exit can be given a status number, and if no number is given, the status is that of the last command executed. 
+`exit'
 
+To exit out of a process or command, ctrl c is used. Control-C interrupts a process and causes it to abort.
 
 ## Repository contents
 
@@ -129,9 +129,3 @@ There are several built-in commands used for job control incorporated into hsh.
 * If an executable cannot be found, print an error message and display the prompt again.
 * Handle errors.
 * You have to handle the “end of file” condition (Ctrl+D)
-
-
-### 5. Simple shell
-
-
-* Simple shell 0.2 - Handle command line with arguments
