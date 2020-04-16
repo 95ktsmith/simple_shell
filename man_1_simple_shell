@@ -120,10 +120,9 @@ If no args are present and if the standard input of the shell is connected to a 
 
 .SH OPTIONS
 
-   Syntax Structure
-     The shell reads input in terms of lines from a file and breaks it up into words at whitespace (blanks and tabs), and at certain sequences
-     of characters that are special to the shell called “operators”.  There are two types of operators: control operators and redirection opera‐
-     tors (their meaning is discussed later).  Following is a list of operators:
+Syntax Structure
+
+The shell reads input in terms of lines from a file and breaks it up into words at whitespace (blanks and tabs), and at certain sequences of characters that are special to the shell called “operators”.  There are two types of operators: control operators and redirection operators (their meaning is discussed later).  Following is a list of operators:
 
            Control operators:
                  & && ( ) ; ;; | || <newline>
@@ -131,23 +130,19 @@ If no args are present and if the standard input of the shell is connected to a 
            Redirection operators:
                  < > >| << >> <& >& <<- <>
 
-   Quoting
-     Quoting is used to remove the special meaning of certain characters or words to the shell, such as operators, whitespace, or keywords.
-     There are three types of quoting: matched single quotes, matched double quotes, and backslash.
+Quoting
 
-   Backslash
-     A backslash preserves the literal meaning of the following character, with the exception of ⟨newline⟩.  A backslash preceding a ⟨newline⟩
-     is treated as a line continuation.
+Quoting is used to remove the special meaning of certain characters or words to the shell, such as operators, whitespace, or keywords.  There are three types of quoting: matched single quotes, matched double quotes, and backslash.
 
-   Single Quotes
-     Enclosing characters in single quotes preserves the literal meaning of all the characters (except single quotes, making it impossible to
-     put single-quotes in a single-quoted string).
+Backslash
 
-   Double Quotes
-     Enclosing characters within double quotes preserves the literal meaning of all characters except dollarsign ($), backquote (`), and back‐
-     slash (\).  The backslash inside double quotes is historically weird, and serves to quote only the following characters:
-           $ ` " \ <newline>.
-     Otherwise it remains literal.
+A backslash preserves the literal meaning of the following character, with the exception of ⟨newline⟩.  A backslash preceding a ⟨newline⟩ is treated as a line continuation.
+
+Single Quotes
+Enclosing characters in single quotes preserves the literal meaning of all the characters (except single quotes, making it impossible to put single-quotes in a single-quoted string).
+
+Double Quotes
+Enclosing characters within double quotes preserves the literal meaning of all characters except dollarsign ($), backquote (`), and back slash (\).  The backslash inside double quotes is historically weird, and serves to quote only the following characters: $ ` " \ <newline>.  Otherwise it remains literal.
 
 
    Aliases
