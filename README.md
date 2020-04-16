@@ -99,7 +99,7 @@ $
 
 [Test suite](./https://github.com/AmilcarArmmand/shell_test_suite)
 
-## Mandatory tasks  :wrench:
+## Mandatory tasks
 
 ### Coding style used is [Betty](./https://github.com/holbertonschool/Betty/wiki) style.
 
@@ -113,6 +113,10 @@ $
 * Handle errors.
 * You have to handle the “end of file” condition (Ctrl+D)
 
+**Syntax**
+
+`
+
 **Built-ins implemented**
 
 There are several built-in commands used for job control incorporated into hsh.
@@ -124,8 +128,6 @@ There are several built-in commands used for job control incorporated into hsh.
 * cd -
 
 ### 5. Simple shell
-
-### Advanced tasks
 
 
 * Simple shell 0.2 - Handle command line with arguments
