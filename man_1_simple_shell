@@ -1,4 +1,4 @@
-.TH man 1 "15 April 2020" "1.0" "hsh man page"
+.TH man 1 "16 April 2020" "1.0" "hsh man page"
 .SH NAME
 .B simple shell
 - Holberton SHell command interpreter.
@@ -100,8 +100,12 @@ void free_array(char **tokens);
 
 
 .SH DESCRIPTION
-Simple shell is a simple command interpreter.  Only a few of the features designated by POSIX, are being incorporated into this shell.  This man page is not intended to be a tutorial or a complete specification of the shell.
+.B Overview
 
+Holberton shell is a simple command interpreter.  Only a few of the features designated by POSIX, are being incorporated into this shell.  This man page is not intended to be a tutorial or a complete specification of the shell. The shell is a command that reads lines from either a file or the terminal, interprets them, and generally executes other commands.  It is the program that is running when a user logs into the system (although a user can select a different shell with the chsh(1) command).  The shell implements a language that has flow control constructs, a macro facility that provides a variety of features in addition to data storage, along with built in history and line editing capabilities.  It incorporates many features to aid interactive use and has the advantage that the interpretative language is common to both interactive and non-interactive use (shell scripts).  That is, commands can be typed directly to the running shell or can be put into a file and the file can be executed directly by the shell.
+
+   Invocation
+If no args are present and if the standard input of the shell is connected to a terminal, the shell is considered an interactive shell.  An interactive shell generally prompts before each command and handles program ming and command errors differently (as described below).
 
 .SH OPTIONS
 holder
@@ -115,30 +119,11 @@ Holder.
 Amilcar Armmand and Kevin Smith
 
 
-NAME
-     hsh — Holbertoncommand interpreter (shell)
-
-SYNOPSIS
-     hsh [-aCefnuvxIimqVEb] [+aCefnuvxIimqVEb] [-o option_name] [+o option_name] [command_file [argument ...]]
-     hsh -c [-aCefnuvxIimqVEb] [+aCefnuvxIimqVEb] [-o option_name] [+o option_name] command_string [command_name [argument ...]]
-     hsh -s [-aCefnuvxIimqVEb] [+aCefnuvxIimqVEb] [-o option_name] [+o option_name] [argument ...]
-
-DESCRIPTION
 
 
-   Overview
-     The shell is a command that reads lines from either a file or the terminal, interprets them, and generally executes other commands.  It is
-     the program that is running when a user logs into the system (although a user can select a different shell with the chsh(1) command).  The
-     shell implements a language that has flow control constructs, a macro facility that provides a variety of features in addition to data
-     storage, along with built in history and line editing capabilities.  It incorporates many features to aid interactive use and has the
-     advantage that the interpretative language is common to both interactive and non-interactive use (shell scripts).  That is, commands can be
-     typed directly to the running shell or can be put into a file and the file can be executed directly by the shell.
+*********
 
-   Invocation
-     If no args are present and if the standard input of the shell is connected to a terminal (or if the -i flag is set), and the -c option is
-     not present, the shell is considered an interactive shell.  An interactive shell generally prompts before each command and handles program‐
-     ming and command errors differently (as described below).  When first starting, the shell inspects argument 0, and if it begins with a dash
-     ‘-’, the shell is also considered a login shell.  This is normally done automatically by the system when the user first logs in.  A login
+  This is normally done automatically by the system when the user first logs in.  A login
      shell first reads commands from the files /etc/profile and .profile if they exist.  If the environment variable ENV is set on entry to an
      interactive shell, or is set in the .profile of a login shell, the shell next reads commands from the file named in ENV.  Therefore, a user
      should place commands that are to be executed only at login time in the .profile file, and commands that are executed for every interactive
