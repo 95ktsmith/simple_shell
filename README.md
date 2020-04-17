@@ -19,11 +19,13 @@ To start interactive mode, type the following into the terminal:
 `./hsh`
 
 From here, input any commands you would like executed. For example:
+
 ```
 $ echo "Hello world!"
 Hello World!
 $
 ```
+
 Or try a command with additional options, like:
 ```
 $ ls -l
