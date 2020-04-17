@@ -41,7 +41,7 @@ void exit_shell(param_t *params)
 			if (params->args[1][index] < '0' ||
 			    params->args[1][index] > '9')
 			{
-				status = EXIT_FAILURE;
+				status = -1;
 				break;
 			}
 			index++;
