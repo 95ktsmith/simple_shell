@@ -22,6 +22,7 @@ void print_env(param_t *params)
 			clean_exit(params, 1);
 		index++;
 	}
+	params->status = 0;
 	free_array(params->args);
 }
 
@@ -32,35 +33,35 @@ void print_env(param_t *params)
  */
 void exit_shell(param_t *params)
 {
-	int index = 0, status = EXIT_SUCCESS;
+	int index = 0, status;
 
 	if (params->args[1])
 	{
-		while (params->args[1][index])
+		for (; params->args[1][index]; index++)
 		{
 			if (params->args[1][index] < '0' ||
 			    params->args[1][index] > '9')
 			{
-				status = -1;
+				params->status = -1;
 				break;
 			}
-			index++;
 		}
-		if (status == EXIT_SUCCESS)
+		if (params->status == EXIT_SUCCESS)
 		{
-			status = 0;
+			params->status = 0;
 			index = 0;
 			while (params->args[1][index])
 			{
-				status *= 10;
-				status += params->args[1][index] - '0';
+				params->status *= 10;
+				params->status += params->args[1][index] - '0';
 				index++;
 			}
-			status %= 256;
+			params->status %= 256;
 		}
 	}
-	if (status < 0)
+	if (params->status < 0)
 	{
+		params->status = 2;
 		write_error(params, "Illegal Number: ");
 		if (write(STDOUT_FILENO, params->args[1],
 			  _strlen(params->args[1])) != _strlen(params->args[1]))
@@ -69,6 +70,7 @@ void exit_shell(param_t *params)
 			clean_exit(params, EXIT_FAILURE);
 		return;
 	}
+	status = params->status;
 	free_params(params);
 	exit(status);
 }
