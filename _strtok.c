@@ -20,7 +20,7 @@ void free_array(char **tokens)
  * token_count - count number of tokens
  * Description: Counts the number of tokens in a string
  * @str: String to parse
- * @delim: character that separates tokens
+ * @delims: string of characters that separate tokens
  * Return: Number of tokens
  */
 int token_count(char *str, char *delims)
@@ -44,7 +44,7 @@ int token_count(char *str, char *delims)
  * Description: Parses a string to extract all tokens and store them in
  *              an array
  * @str: String to parse
- * @delim: Character that separates tokens
+ * @delims: string of characters that separate tokens
  * @params: Parameter struct
  * Return: Pointer to array of tokens
  */
