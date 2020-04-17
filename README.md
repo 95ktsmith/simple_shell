@@ -46,6 +46,7 @@ total 132
 -rw-rw-r-- 1 vagrant vagrant  1947 Apr 16 10:50 _strtok.c
 $
 ```
+
 To exit interactive mode:
 ```
 ksmith:$ ./hsh
