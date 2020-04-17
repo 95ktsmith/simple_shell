@@ -8,7 +8,7 @@ repository are all the file required for the shell to be compiled and run, as we
 ## How to Use
 ### Compilation
 The shell is compiled this way:
-`gcc -Wall -Werror -Wextra -pedanctic *.c -o hsh`
+`gcc -Wall -Werror -Wextra -pedantic *.c -o hsh`
 
 ### Interactive Mode
 To start interactive mode, type the following into the terminal:
