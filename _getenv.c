@@ -32,23 +32,18 @@ char *check_file(param_t *params)
 			filepath = _strdup(params->args[0]);
 			if (!filepath)
 				clean_exit(params, EXIT_FAILURE);
-			params->status = 0;
 			return (filepath);
 		}
 		else
 		{
-			params->status = 127;
 			write_error(params, "not found\n");
 			return (NULL);
 		}
 	}
 	filepath = find_in_path(params);
 	if (filepath)
-	{
-		params->status = 0;
 		return (filepath);
-	}
-	params->status = 127;
+
 	write_error(params, "not found\n");
 	return (NULL);
 }

@@ -23,7 +23,6 @@ int main(int argc, char *argv[], char *env[])
 		return (-1);
 	params->shellname = argv[0];
 	params->loop_count = 0;
-	params->status = 0;
 	params->env = env;
 	prompt = (_getenv("PS1", env) ? _getenv("PS1", env) : "$ ");
 	while (++(params->loop_count))
@@ -44,7 +43,7 @@ int main(int argc, char *argv[], char *env[])
 			find_and_exec(params);
 	}
 	free_params(params);
-	return (params->status);
+	return (EXIT_SUCCESS);
 }
 /**
  * find_and_exec - find and execute file
@@ -83,7 +82,6 @@ int find_and_exec(param_t *params)
 		else
 			wait(&pid);
 		free_array(params->args);
-		params->status = 0;
 		return (0);
 	}
 

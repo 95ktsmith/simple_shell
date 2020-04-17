@@ -20,7 +20,6 @@
 typedef struct params
 {
 	size_t loop_count;
-	int status;
 	char *shellname;
 	char **args;
 	char **env;
