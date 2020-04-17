@@ -61,6 +61,7 @@ To start in non-interactive mode, the shell is used as:
 `echo [commands] | ./hsh`
 
 For example:
+
 ```
 ksmith:$ echo "echo Hello!" | ./hsh
 Hello!
