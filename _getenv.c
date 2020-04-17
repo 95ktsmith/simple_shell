@@ -151,7 +151,7 @@ char *_getenv(char *var, char **env)
 			str_index++;
 		}
 		if (env[env_index][str_index] == '=')
-			return(env[env_index] + str_index + 1);
+			return (env[env_index] + str_index + 1);
 		env_index++;
 	}
 	return (NULL);
