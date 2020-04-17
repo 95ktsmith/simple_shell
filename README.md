@@ -51,17 +51,6 @@ ksmith:$
 To start in non-interactive mode, the shell is used as:
 `echo [commands] | ./hsh`
 
-<<<<<<< HEAD
-* Display a prompt and wait for the user to type a command. A command line always ends with a new line.
-* The prompt is displayed again each time a command has been executed.
-
-* The command lines are simple, no semicolons, no pipes, no redirections or any other advanced features.
-
-* The command lines are made only of one word. No arguments will be passed to programs.
-* If an executable cannot be found, print an error message and display the prompt again.
-* Handle errors.
-* You have to handle the “end of file” condition (Ctrl+D)
-=======
 For example:
 ```
 ksmith:$ echo "echo Hello!" | ./hsh
@@ -70,4 +59,3 @@ ksmith:$
 ```
 When used this way, the shell does not need to be exited, as it will exit itself
 after executing any commands given.
->>>>>>> b6698eae03632c5ae2b040cc9d0efc82a95fc943
