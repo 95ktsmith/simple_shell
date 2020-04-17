@@ -12,7 +12,6 @@
 /**
  * struct params - parameter struct
  * @loop_count: Number of loops or inputs since the shell was started
- * @status: Status for exiting, set after each user input
  * @shellname: Name of the file the shell was run as
  * @args: Tokenized list of arguments from getline
  * @env: Environment
