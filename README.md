@@ -48,6 +48,7 @@ $
 ```
 
 To exit interactive mode:
+
 ```
 ksmith:$ ./hsh
 $ exit
