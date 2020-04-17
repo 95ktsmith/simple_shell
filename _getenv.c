@@ -139,13 +139,20 @@ char *find_in_path(param_t *params)
  */
 char *_getenv(char *var, char **env)
 {
-	int index = 0;
+	int env_index = 0, str_index;
 
-	while (env[index])
+	while (env[env_index])
 	{
-		if (_strstr(env[index], var) != NULL)
-			return (_strstr(env[index], var) + _strlen(var) + 1);
-		index++;
+		str_index = 0;
+		while (env[env_index][str_index] && var[str_index])
+		{
+			if (env[env_index][str_index] != var[str_index])
+				break;
+			str_index++;
+		}
+		if (env[env_index][str_index] == '=')
+			return(env[env_index] + str_index + 1);
+		env_index++;
 	}
 	return (NULL);
 }
