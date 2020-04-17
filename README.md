@@ -57,6 +57,7 @@ ksmith:$
 
 ### Non-Interactive Mode
 To start in non-interactive mode, the shell is used as:
+
 `echo [commands] | ./hsh`
 
 For example:
