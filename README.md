@@ -27,6 +27,7 @@ $
 ```
 
 Or try a command with additional options, like:
+
 ```
 $ ls -l
 total 132
