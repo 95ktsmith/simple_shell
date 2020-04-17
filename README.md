@@ -56,6 +56,7 @@ ksmith:$
 ```
 
 ### Non-Interactive Mode
+
 To start in non-interactive mode, the shell is used as:
 
 `echo [commands] | ./hsh`
@@ -67,5 +68,6 @@ ksmith:$ echo "echo Hello!" | ./hsh
 Hello!
 ksmith:$
 ```
+
 When used this way, the shell does not need to be exited, as it will exit itself
 after executing any commands given.
